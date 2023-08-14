@@ -1,10 +1,10 @@
-package com.example.diplomski_backend;
+package com.example.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DiplomskiBackendApplicationTests {
+class SeminarskiBackendApplicationTests {
 
 	@Test
 	void contextLoads() {
