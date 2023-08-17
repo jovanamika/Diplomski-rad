@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.FetchType;
@@ -14,20 +16,36 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@Table(name = "users")
 public class UserEntity {
 	@Id
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@Basic
+	@Column(name = "firstname")
 	private String firstname;
+	
+	@Basic
+	@Column(name = "lastname")
 	private String lastname;
+	
+	@Basic
+	@Column(name = "email")
 	private String email;
+	
+	@Basic
+	@Column(name = "password")
 	private String password;
+	
+	@Basic
+	@Column(name = "active", insertable = false)
 	private Boolean active;
-	
-	
 	
 	public UserEntity() {}
 	public UserEntity(String firstname, String lastname, String email, String password) {
@@ -83,6 +101,19 @@ public class UserEntity {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public Boolean getActive() {
+		return active;
+	}
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+	public List<RoleEntity> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<RoleEntity> roles) {
+		this.roles = roles;
+	}
+	
 	
 	
 

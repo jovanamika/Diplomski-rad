@@ -11,6 +11,7 @@ import com.example.demo.repository.UserRepository;
 public class UserService {
 	@Autowired
 	private UserRepository userRepository;
+	
 
     public List<UserEntity> getAllUsers(){
         return this.userRepository.findAll();
@@ -23,6 +24,18 @@ public class UserService {
     public void addUser(UserEntity user) {
     	
    	 this.userRepository.save(user);
+   	 //Add role
 
    }
+    
+    public void deleteUserById(int id) {
+    	UserEntity user = this.getUserById(id);
+    	user.setActive(false);
+    	this.updateUser(user);
+    }
+    
+    public void updateUser(UserEntity user) {
+    	this.userRepository.save(user);
+    }
+    
 }
