@@ -1,5 +1,8 @@
 package com.example.demo.model.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import jakarta.persistence.Basic;
@@ -9,6 +12,7 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,6 +27,9 @@ public class RoleEntity {
 	@Basic
 	@Column(name = "name")
 	private String name;
+	
+	 @ManyToMany(mappedBy = "roles")
+	    private Set<UserEntity> users = new HashSet<>();
 	
 
     public RoleEntity() { }
@@ -56,6 +63,19 @@ public class RoleEntity {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public Set<UserEntity> getUsers() {
+		return users;
+	}
+	
+	public void addUser(UserEntity user) {
+		this.users.add(user);
+	}
+
+	public void setUsers(Set<UserEntity> users) {
+		this.users = users;
+	}
+	
 	
 	
 
