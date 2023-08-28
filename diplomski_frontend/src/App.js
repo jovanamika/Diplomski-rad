@@ -1,17 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
-
+import Navbar from './Components/Navbar';
+import { Route,BrowserRouter as Router, Switch } from 'react-router-dom/cjs/react-router-dom';
+import HomePage from './Pages/HomePage/HomePage';
+import LoginPage from './Pages/LogInPage/LoginPage';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-       
-        <p>
-          HomePage 
-        </p>
-       
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Navbar/>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/login" component={LoginPage}/>
+        </Switch>
+      </div>
+    </Router>
+
   );
 }
 
