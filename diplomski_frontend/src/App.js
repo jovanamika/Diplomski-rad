@@ -4,6 +4,8 @@ import HomePage from './Pages/HomePage/HomePage';
 import LoginPage from './Pages/LogInPage/LoginPage';
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import Registration from './Pages/RegistrationPage/Registration';
+import Seminar from './Pages/SeminarsPage/Seminar';
+import News from './Pages/NewsPage/News';
 import Footer from './Components/Footer/Footer';
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
           <Route exact path="/" element={<HomePage/>} />
           <Route exact path="/login" element={<LoginPage/>}/>
           <Route exact path="/registration" element={<Registration/>}/>
+          <Route exact path="/seminars" element={<Seminar/>}></Route>
+          <Route exact path='/news' element={<News/>}></Route>
         </Routes>
     </BrowserRouter>
     <Footer/>

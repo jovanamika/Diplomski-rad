@@ -16,7 +16,7 @@ function Navbar() {
 			<h3>LOGO</h3>
 			<nav ref={navRef}>
 				<a href="/">Početna</a>
-				<a href="/posts">Novosti</a>
+				<a href="/news">Novosti</a>
 				<a href="/seminars">Seminari</a>
 				<a href="/login">Prijavi se</a>
 				<button
