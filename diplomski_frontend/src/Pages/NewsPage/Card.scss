@@ -3,6 +3,7 @@
   justify-self: center;
   align-items: center;
   margin: auto;
+  background-color: #fff;
 
   .card {
     flex: 1;
@@ -27,7 +28,6 @@
 
       button {
         padding: 0.5rem;
-        background-color: transparent;
         border: none;
         transition: 0.2s;
         margin-bottom: 0.5rem;
@@ -35,6 +35,7 @@
 
         &:hover{
           background-color: var(--color-orange);
+          color:white;
         }
       }
     }
@@ -62,9 +63,51 @@
     @media screen and (min-width:1279px) {
       grid-column: span 3;
       .card{
+        box-shadow: none;
+        background-color:ghostwhite;
         &:hover{
           transform: none;
           box-shadow: none;
+        }
+        .card-image-container{
+          height:300px;
+          width: 100%;
+          overflow: hidden;
+
+          img{
+            overflow: hidden;
+          }
+        }
+
+        h4 {
+          font-size:32px;
+        }
+
+        &__text {
+          height: 50px;
+          width: 100%;
+          margin-bottom: 10px;
+        }
+    
+        &__button {
+          margin-bottom: 40px;
+    
+          button {
+            padding: 0.5rem;
+            background-color: var(--color-orange);
+            color:white;
+            border: none;
+            transition: 0.2s;
+            margin-bottom: 0.5rem;
+            border-radius: 3px;
+            font-size:18px;
+            width: 20%;
+    
+            &:hover{
+              background-color: var(--color-orange);
+              color:white;
+            }
+          }
         }
       }
     }
@@ -76,7 +119,7 @@
 
   @media screen and (min-width: 1080px) {
     .news{
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); // Adjust minmax values as needed
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); // Adjust minmax values as needed
     }
   }
 }

@@ -12,7 +12,7 @@ function Navbar() {
 	};
 
 	return (
-		<header>
+		<header className="header">
 			<h3>LOGO</h3>
 			<nav ref={navRef}>
 				<a href="/">Početna</a>
