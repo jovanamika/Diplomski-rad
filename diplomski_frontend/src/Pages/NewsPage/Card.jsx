@@ -1,7 +1,20 @@
 import React from 'react'
 import './Card.scss'
+import { useNavigate } from 'react-router-dom'
+import { useCardContext } from '../../Contex/CardContex';
 
 export default function Card({ image, title, description, isFirstCard }) {
+    const { setCardData } = useCardContext();
+    const navigate = useNavigate();
+
+    const handleButtonClick = () => {
+        // Set the card data in the context
+        setCardData({ image, title, description });
+
+        navigate('/card');
+        // You can use react-router's Link or programmatically navigate as shown in previous answers
+    };
+
     return (
         <div className={`content ${isFirstCard ? 'big-card' : ''}`}>
             <div className='card'>
@@ -13,7 +26,7 @@ export default function Card({ image, title, description, isFirstCard }) {
                     <p>{description}</p>
                 </div>
                 <div className='card__button'>
-                    <button>Vidi više</button>
+                    <button onClick={handleButtonClick}>Vidi više</button>
                 </div>
             </div>
         </div>
