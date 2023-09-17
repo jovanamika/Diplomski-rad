@@ -4,6 +4,9 @@ import { Pagination } from 'swiper/modules';
 import Card from '../../NewsPage/Card';
 import news from '../../../Assets/Img/news.jpg'
 import 'swiper/css'
+import 'swiper/css/pagination';
+import SliderCards from './SliderCards';
+import './Style.css';
 
 export default function Slider() {
     const cardData = [
@@ -46,12 +49,11 @@ export default function Slider() {
             justify='center'
         >
             {cardData.map((card, index) => (
-                <SwiperSlide><Card key={index}
-                    image={card.image}
-                    title={card.title}
-                    description={card.description}
-                    isFirstCard={index === 0}
-                /></SwiperSlide>
+                <SwiperSlide>
+                    <div className="slider-cards">
+                    <SliderCards></SliderCards> 
+                    </div>
+               </SwiperSlide>
             ))}
         </Swiper>
     );

@@ -1,12 +1,12 @@
 .slider-container {
-    background-color: white;
     align-items: center;
     align-self: center;
     justify-content: center;
     position: relative;
     margin-top:10vh;
     margin-bottom: 100px;
-    height: 100%;
+    height: 700px;
+    background-origin: red;
 
     h1{
         font-size:40px;
@@ -14,6 +14,5 @@
     }
     .content{
         width: 90%;
-        height: 100%;
-    }
+    }      
 }

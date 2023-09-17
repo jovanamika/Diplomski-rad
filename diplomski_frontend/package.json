@@ -49,5 +49,8 @@
   },
   "devDependencies": {
     "sass": "^1.66.1"
-  }
+  },
+  "tags": [
+    "swiper"
+  ]
 }
