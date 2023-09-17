@@ -1,5 +1,7 @@
 import { useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { Image } from "@chakra-ui/react";
+import logo from '../../Assets/Img/logo.png'
 import "./NavbarStyles.css";
 
 function Navbar() {
@@ -13,7 +15,13 @@ function Navbar() {
 
 	return (
 		<header className="header">
-			<h3>LOGO</h3>
+			<Image
+				marginLeft={'5%'}
+				borderRadius='full'
+				boxSize='60px'
+				src={logo}
+				alt='Dan Abramov'
+			/>
 			<nav ref={navRef}>
 				<a href="/">Početna</a>
 				<a href="/news">Novosti</a>
