@@ -51,9 +51,14 @@ export default function Slider() {
             {cardData.map((card, index) => (
                 <SwiperSlide>
                     <div className="slider-cards">
-                    <SliderCards></SliderCards> 
+                        <SliderCards key={index}
+                            image={card.image}
+                            title={card.title}
+                            description={card.description}
+                            isFirstCard={'false'}
+                        />
                     </div>
-               </SwiperSlide>
+                </SwiperSlide>
             ))}
         </Swiper>
     );

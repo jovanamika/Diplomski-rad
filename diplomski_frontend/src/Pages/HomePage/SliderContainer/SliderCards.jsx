@@ -1,35 +1,36 @@
 import React from 'react'
 import { Card, CardBody, Image, Stack, Heading, Text, Divider, CardFooter, ButtonGroup, Button } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom';
+import { useCardContext } from '../../../Contex/CardContex';
 
-export default function SliderCards() {
+export default function SliderCards({ image, title, description, isFirstCard }) {
+  const { setCardData } = useCardContext();
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+      // Set the card data in the context
+      setCardData({ image, title, description });
+
+      navigate('/card');
+      // You can use react-router's Link or programmatically navigate as shown in previous answers
+  };
   return (
     <Card maxW='sm'>
     <CardBody>
       <Image
-        src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
-        alt='Green double couch with wooden legs'
+        src={image}
+        alt='News picture'
         borderRadius='lg'
       />
-      <Stack mt='6' spacing='3'>
-        <Heading size='md'>Living room Sofa</Heading>
-        <Text>
-          This sofa is perfect for modern tropical spaces, baroque inspired
-          spaces, earthy toned spaces and for people who love a chic design with a
-          sprinkle of vintage design.
-        </Text>
-        <Text color='blue.600' fontSize='2xl'>
-          $450
-        </Text>
+      <Stack mt='6' spacing='3' height={'50px'}>
+        <Heading size='md' marginTop={'3vh'}>{title}</Heading>
       </Stack>
     </CardBody>
-    <Divider />
-    <CardFooter>
-      <ButtonGroup spacing='2'>
-        <Button variant='solid' colorScheme='blue'>
-          Buy now
-        </Button>
-        <Button variant='ghost' colorScheme='blue'>
-          Add to cart
+    
+    <CardFooter justify='center'>
+      <ButtonGroup  spacing='2' justify='center' align='center'>
+        <Button variant='solid' colorScheme='blue' width={'150%'} onClick={handleButtonClick}>
+          Vidi više
         </Button>
       </ButtonGroup>
     </CardFooter>

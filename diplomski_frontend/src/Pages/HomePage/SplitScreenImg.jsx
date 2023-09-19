@@ -8,7 +8,13 @@ import {
     useBreakpointValue,
 } from '@chakra-ui/react'
 
+import { useNavigate } from 'react-router-dom';
+
 export default function SplitScreenImg() {
+    const navigate = useNavigate();
+    const handleClick = () => {
+        navigate("/registration");
+    }
     return (
         <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
             <Flex p={8} flex={1} align={'center'} justify={'center'}>
@@ -31,7 +37,7 @@ export default function SplitScreenImg() {
                         </Text>
                         <br />{' '}
                         <Text color={'blue.400'} as={'span'}>
-                           naučnim seminarom
+                            naučnim seminarom
                         </Text>{' '}
                     </Heading>
                     <Text fontSize={{ base: 'md', lg: 'lg' }} color={'gray.500'}>
@@ -45,7 +51,8 @@ export default function SplitScreenImg() {
                             color={'white'}
                             _hover={{
                                 bg: 'blue.500',
-                            }}>
+                            }}
+                            onClick={handleClick}>
                             Registruj se
                         </Button>
                     </Stack>

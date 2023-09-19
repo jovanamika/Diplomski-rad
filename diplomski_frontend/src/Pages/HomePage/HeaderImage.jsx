@@ -1,6 +1,12 @@
 import { Stack, Flex, Button, Text, VStack, useBreakpointValue } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom';
 
 export default function HeaderImage() {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/seminars");
+  }
+
   return (
     <Flex
       w={'full'}
@@ -21,7 +27,7 @@ export default function HeaderImage() {
             fontWeight={700}
             lineHeight={1.2}
             fontSize={useBreakpointValue({ base: '3xl', md: '4xl' })}>
-           Prijavi se na neki od seminara
+            Prijavi se na neki od seminara
           </Text>
           <Stack direction={'row'} align='center' justify='center'>
             <Button
@@ -29,8 +35,9 @@ export default function HeaderImage() {
               bg={'blue.400'}
               rounded={'full'}
               color={'white'}
-              _hover={{ bg: 'blue.500' }}>
-              Vidi više
+              _hover={{ bg: 'blue.500' }}
+              onClick={handleClick}>
+              Pregled aktuelnih seminara
             </Button>
           </Stack>
         </Stack>
