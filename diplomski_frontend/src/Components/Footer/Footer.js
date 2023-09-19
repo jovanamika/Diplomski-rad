@@ -5,11 +5,11 @@ import {
   Stack,
   Text,
   useColorModeValue,
-  VisuallyHidden,
-  Image
+  Link,
+  Icon,
+  Image,
 } from '@chakra-ui/react'
-import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa'
-import { ReactNode } from 'react'
+import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 import logo from '../../Assets/Img/logo.png'
 
 const Logo = () => {
@@ -17,7 +17,6 @@ const Logo = () => {
     <Image height={10} viewBox="0 0 100 28" src={logo} alt="logo" />
   )
 }
-
 
 
 export default function Footer() {
@@ -66,7 +65,15 @@ export default function Footer() {
           align={{ base: 'center', md: 'center' }}>
           <Text>© 2023 Copyright Jovana Mika. All rights reserved</Text>
           <Stack direction={'row'} spacing={6}>
-
+            <Link href='https://www.facebook.com/pmf.unibl.org/'>
+              <Icon as={FaFacebook} boxSize={6} color="black" mr={3} />
+            </Link>
+            <Link href='https://www.instagram.com/pmfbl/'>
+              <Icon as={FaInstagram} boxSize={6} color="black" mr={3} />
+            </Link>
+            <Link href='https://twitter.com/PMFBL'>
+              <Icon as={FaTwitter} boxSize={6} color="black" mr={3} />
+            </Link>
           </Stack>
         </Container>
       </Box>
