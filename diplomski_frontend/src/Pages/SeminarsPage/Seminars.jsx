@@ -8,17 +8,17 @@ export default function Seminars({ image, title, description, date, active }) {
       overflow='hidden'
       variant='outline'
     >
-      <Stack>
-        <CardBody>
-          <Heading size='md'>Seminar title 1</Heading>
+      <Stack justify='center' align='center'>
+        <CardBody justify='center' align='center'>
+          <Heading size='md' marginBottom={'2vh'}>Seminar title 1</Heading>
 
           <Text py='2'>
             Seminar description....Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor si.
           </Text>
         </CardBody>
 
-        <CardFooter>
-          <Button variant='solid' colorScheme='blue'>
+        <CardFooter align='center' justify='center' width={'50%'}>
+          <Button variant='solid' colorScheme='blue' width={'50%'}>
             Prijavi se
           </Button>
         </CardFooter>

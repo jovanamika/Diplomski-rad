@@ -3,7 +3,7 @@ import { Card, CardBody, Image, Stack, Heading, Text, Divider, CardFooter, Butto
 import { useNavigate } from 'react-router-dom';
 import { useCardContext } from '../../../Contex/CardContex';
 
-export default function SliderCards({ image, title, description, isFirstCard }) {
+export default function SliderCards({ image, title, description, isFirstCard}) {
   const { setCardData } = useCardContext();
   const navigate = useNavigate();
 
@@ -15,18 +15,18 @@ export default function SliderCards({ image, title, description, isFirstCard }) 
       // You can use react-router's Link or programmatically navigate as shown in previous answers
   };
   return (
-    <Card maxW='sm'>
+    <Card maxW='sm' background={'white'}>
     <CardBody>
       <Image
         src={image}
         alt='News picture'
         borderRadius='lg'
       />
-      <Stack mt='6' spacing='3' height={'50px'}>
+      <Stack mt='7' spacing='2' height={'50px'}>
         <Heading size='md' marginTop={'3vh'}>{title}</Heading>
       </Stack>
     </CardBody>
-    
+  
     <CardFooter justify='center'>
       <ButtonGroup  spacing='2' justify='center' align='center'>
         <Button variant='solid' colorScheme='blue' width={'150%'} onClick={handleButtonClick}>

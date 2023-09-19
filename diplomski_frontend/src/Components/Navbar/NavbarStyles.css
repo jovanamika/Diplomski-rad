@@ -9,13 +9,17 @@
 
 .header {
 	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	align-items:center;
+	justify-content: start;
 	height: 80px;
 	padding: 0 2rem;
 	color: var(--text-color);
 	margin-bottom: 5vh;
 	z-index: 100;
+}
+
+nav{
+	justify-self:baseline;
 }
 
 nav a {
@@ -25,11 +29,11 @@ nav a {
 }
 
 nav a:hover {
-	color: var(--color-grey);
+	color: var(--color-blue);
 }
 
 header .nav-btn {
-	padding: 5px;
+	padding: 10px;
 	cursor: pointer;
 	background: transparent;
 	border: none;
@@ -42,6 +46,7 @@ header .nav-btn {
 
 header div,
 nav {
+	padding-left: 10vh;
 	display: flex;
 	align-items: center;
 	height: 100%;

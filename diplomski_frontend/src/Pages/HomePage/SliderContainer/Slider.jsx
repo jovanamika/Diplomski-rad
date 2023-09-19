@@ -56,6 +56,7 @@ export default function Slider() {
                             title={card.title}
                             description={card.description}
                             isFirstCard={'false'}
+                            isForSeminarPage={'false'}
                         />
                     </div>
                 </SwiperSlide>

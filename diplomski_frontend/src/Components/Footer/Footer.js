@@ -24,10 +24,10 @@ export default function Footer() {
   return (
     <Box
       as="footer"
-      bg={'white'}
+      bg={'transparent'}
       color={useColorModeValue('gray.700', 'gray.200')}
       bottom={0}
-      mt="auto">
+      mt='auto'>
       <Container
         as={Stack}
         maxW={'6xl'}

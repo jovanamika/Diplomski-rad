@@ -13,7 +13,9 @@ code {
 }
 
 :root {
-	--color-blue: white;
+	--color-blue: #0056b3;
+  --color-dark-blue: #071952;
+  --color-light-blue:#088395;
 	--color-brown: #5c2018;
 	--color-orange: #bc4639;
 	--color-lightBrown: #d4A59A;
