@@ -1,27 +1,42 @@
 import React from 'react'
-import { CardFooter, Text, Button, Card, Image, Stack, CardBody, Heading } from '@chakra-ui/react'
-
-export default function Seminars({ image, title, description, date, active }) {
+import { CardFooter, Text, Button, Card, Divider, Stack, CardBody, Heading, Flex} from '@chakra-ui/react'
+import { CalendarIcon, TimeIcon } from '@chakra-ui/icons'
+import { HStack } from '@chakra-ui/react'
+export default function Seminars({ image, title, description, date, time, active }) {
   return (
     <Card
       direction={{ base: 'column', sm: 'row' }}
       overflow='hidden'
       variant='outline'
+      justify='center'
+      align='center'
+      width={'100%'}
     >
-      <Stack justify='center' align='center'>
-        <CardBody justify='center' align='center'>
-          <Heading size='md' marginBottom={'2vh'}>Seminar title 1</Heading>
+      <Stack justify='center' align='center' width={'90%'}>
+        <CardBody justify='center' align='center' width={'100%'}>
+          <Heading size='md' marginBottom={'2vh'}>{title}</Heading>
 
-          <Text py='2'>
-            Seminar description....Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor si.
+          <Text py='2' align='left' marginBottom={'2vh'}>
+            {description}
           </Text>
+          <Divider />
+          <Flex>
+            <HStack spacing={2}>
+              <CalendarIcon />
+              <Text py='2' marginRight={'8vh'}>Datum {date}</Text>
+            </HStack>
+            <HStack spacing={2}>
+              <TimeIcon />
+              <Text py='2' marginRight={'8vh'}>Vrijeme {time}</Text>
+            </HStack>
+          </Flex>
         </CardBody>
 
-        <CardFooter align='center' justify='center' width={'50%'}>
-          <Button variant='solid' colorScheme='blue' width={'50%'}>
+        {active && (<CardFooter align='center' justify='flex-end' width={'100%'}>
+          <Button variant='solid' colorScheme='blue' >
             Prijavi se
           </Button>
-        </CardFooter>
+        </CardFooter>)}
       </Stack>
     </Card>
   )

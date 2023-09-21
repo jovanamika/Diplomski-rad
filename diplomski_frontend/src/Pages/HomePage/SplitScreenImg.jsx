@@ -23,16 +23,7 @@ export default function SplitScreenImg() {
                         <Text
                             as={'span'}
                             position={'relative'}
-                            _after={{
-                                content: "''",
-                                width: 'full',
-                                height: useBreakpointValue({ base: '20%', md: '30%' }),
-                                position: 'absolute',
-                                bottom: 1,
-                                left: 0,
-                                bg: 'blue.400',
-                                zIndex: -1,
-                            }}>
+                        >
                             Aplikacija za rukovođenje
                         </Text>
                         <br />{' '}

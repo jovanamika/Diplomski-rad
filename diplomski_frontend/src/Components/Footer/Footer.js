@@ -27,7 +27,7 @@ export default function Footer() {
       color={useColorModeValue('gray.700', 'gray.200')}
       bottom={0}
       mt='auto'>
-      <Container
+     {/*<Container
         as={Stack}
         maxW={'6xl'}
         py={4}
@@ -49,7 +49,7 @@ export default function Footer() {
             Prijava
           </Box>
         </Stack>
-      </Container>
+      </Container>*/}
 
       <Box
         borderTopWidth={1}

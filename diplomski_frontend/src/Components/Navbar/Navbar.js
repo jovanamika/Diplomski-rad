@@ -17,6 +17,7 @@ function Navbar() {
 		<header className="header">
 			<Image
 				marginLeft={'5%'}
+				marginRight={'15%'}
 				borderRadius='full'
 				boxSize='60px'
 				src={logo}
