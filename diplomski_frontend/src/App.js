@@ -10,6 +10,7 @@ import Footer from './Components/Footer/Footer';
 import { CardProvider } from './Contex/CardContex';
 import CardDetail from './Pages/NewsPage/CardDetail';
 import { ChakraProvider } from '@chakra-ui/react';
+import Profil from './Pages/ProfilPage/Profil';
 function App() {
   return (
     <ChakraProvider>
@@ -21,9 +22,10 @@ function App() {
               <Route exact path="/" element={<HomePage />} />
               <Route exact path="/login" element={<LoginPage />} />
               <Route exact path="/registration" element={<Registration />} />
-              <Route exact path="/seminars" element={<Seminars/>}></Route>
+              <Route exact path="/seminars" element={<Seminars />}></Route>
               <Route exact path='/news' element={<News />}></Route>
               <Route path="/card" element={<CardDetail />} />
+              <Route path="/profil" element={<Profil />} />
             </Routes>
           </CardProvider>
         </BrowserRouter>
