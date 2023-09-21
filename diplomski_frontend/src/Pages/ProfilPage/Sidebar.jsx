@@ -1,31 +1,47 @@
 import React from 'react'
-import { Container, InputGroup, IconButton, Heading, HStack, Text } from '@chakra-ui/react';
-import { SearchIcon, CalendarIcon } from '@chakra-ui/icons';
+import { Container, HStack, Text, Icon, Divider } from '@chakra-ui/react';
+import { TfiWrite, TfiSettings, TfiAgenda, TfiShiftRight, TfiIdBadge, TfiHome, TfiUser } from "react-icons/tfi";
+
+
 
 export default function Sidebar() {
     return (
         <div>
             <Container marginTop={'5vh'}>
-                <HStack spacing={2}>
-                    <CalendarIcon />
-                    <Text py='2' marginRight={'8vh'}>Informacije</Text>
+
+                <HStack spacing={4}>
+                    <Icon as={TfiUser} boxSize={5} />
+                    <Text py='2' marginRight={'8vh'}>Profil</Text>
                 </HStack>
-                <HStack spacing={2}>
-                    <CalendarIcon />
+
+                <Divider background={'black'} height={'1px'} />
+
+                <HStack spacing={4}>
+                    <Icon as={TfiAgenda} boxSize={5} />
                     <Text py='2' marginRight={'8vh'}>Seminari</Text>
                 </HStack>
-                <HStack spacing={2}>
-                    <CalendarIcon />
+
+                <Divider background={'black'} height={'1px'} />
+
+                <HStack spacing={4}>
+                    <Icon as={TfiWrite} boxSize={5} />
                     <Text py='2' marginRight={'8vh'}>Napiši post</Text>
                 </HStack>
-                <HStack spacing={2}>
-                    <CalendarIcon />
+
+                <Divider background={'black'} height={'1px'} />
+
+                <HStack spacing={4}>
+                    <Icon as={TfiSettings} boxSize={5} />
                     <Text py='2' marginRight={'8vh'}>Uredi profil</Text>
                 </HStack>
-                <HStack spacing={2}>
-                    <CalendarIcon />
+
+                <Divider background={'black'} height={'1px'} />
+
+                <HStack spacing={4}>
+                    <Icon as={TfiShiftRight} boxSize={5} />
                     <Text py='2' marginRight={'8vh'}>Odjavi se</Text>
                 </HStack>
+
             </Container>
         </div>
     )
