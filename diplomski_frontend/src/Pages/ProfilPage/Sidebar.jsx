@@ -18,7 +18,7 @@ export default function Sidebar() {
 
                 <HStack spacing={4}>
                     <Icon as={TfiAgenda} boxSize={5} />
-                    <Text py='2' marginRight={'8vh'}>Seminari</Text>
+                   <Text py='2' marginRight={'8vh'}>Seminari</Text>
                 </HStack>
 
                 <Divider background={'black'} height={'1px'} />
