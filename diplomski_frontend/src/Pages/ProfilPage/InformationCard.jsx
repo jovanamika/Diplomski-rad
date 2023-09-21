@@ -7,7 +7,7 @@ export default function InformationCard({ firstname, lastname, email, image }) {
             paddingBottom={'5vh'}
             justify='center'
             align='center'
-            width={'100%'}
+            width='100%'
         >
             <Wrap justify='center' align='center'>
                 <WrapItem>

@@ -4,40 +4,47 @@
     align-items: center;
     align-self: center;
     display: flex;
-    gap: 20px;
+    gap: 30px;
     margin-bottom: auto;
 
     &__left {
-
         height: 700px;
         width: 15%;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
         overflow-y: auto;
-        margin-left: 5vh;
+        margin-left: 10vh;
         background: linear-gradient(to bottom, #e0e9ed, transparent);
-
     }
 
     &__right {
-        width: 85%;
+        width: 70%;
         height: 700px;
-        border: 1px 0px 0px 0px solid gray;
         padding-left: 2vh;
         padding-right: 5vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background: linear-gradient(to bottom, #e0e9ed, transparent);
 
 
         .profil-content {
-            width: 80%;
+            width: 100%;
             height: 100%;
             justify-content: center;
+            align-items: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
 
     }
 }
+
+.activeText {
+    color: var(--color-blue);
+}
+
+.text-component:hover {
+    color: var(--color-light-blue);
+}
+
