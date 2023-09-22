@@ -5,6 +5,7 @@ import { TfiWrite, TfiSettings, TfiAgenda, TfiShiftRight, TfiIdBadge, TfiHome, T
 import { useState } from 'react'
 import './Profil.scss'
 import SettingsPage from './SettingsPage';
+import PostCard from './PostCard';
 
 export default function Profil() {
   const [informationCard, setInformationCardVisible] = useState(true);
@@ -99,7 +100,7 @@ export default function Profil() {
         </div>)}
 
         {postCard && (<div className="profil-content">
-          <p>Post card</p>
+          <PostCard/>
         </div>)}
 
         {settingsCard && (<div className="profil-content">

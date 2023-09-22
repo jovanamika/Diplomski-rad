@@ -3,15 +3,23 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { Image } from "@chakra-ui/react";
 import logo from '../../Assets/Img/logo.png'
 import "./NavbarStyles.css";
+import { WrapItem, Avatar, AvatarBadge } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
-function Navbar() {
+function Navbar({ isLogged }) {
 	const navRef = useRef();
+	const navigate = useNavigate();
+
 
 	const showNavbar = () => {
 		navRef.current.classList.toggle(
 			"responsive_nav"
 		);
 	};
+
+	const handleClick = () => {
+		navigate("/profil");
+	}
 
 	return (
 		<header className="header">
@@ -39,6 +47,11 @@ function Navbar() {
 				onClick={showNavbar}>
 				<FaBars />
 			</button>
+
+			{isLogged &&
+				(<Avatar name='Kent Dodds' src='https://bit.ly/kent-c-dodds' onClick={handleClick} cursor="pointer" />
+				)}
+
 		</header>
 	);
 }

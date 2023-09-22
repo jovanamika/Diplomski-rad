@@ -17,7 +17,7 @@ function App() {
       <div className='App'>
         <BrowserRouter>
           <CardProvider>
-            <Navbar />
+            <Navbar isLogged={'true'}/>
             <Routes>
               <Route exact path="/" element={<HomePage />} />
               <Route exact path="/login" element={<LoginPage />} />
