@@ -11,13 +11,14 @@ import { CardProvider } from './Contex/CardContex';
 import CardDetail from './Pages/NewsPage/CardDetail';
 import { ChakraProvider } from '@chakra-ui/react';
 import Profil from './Pages/ProfilPage/Profil';
+import AdminPanel from './Pages/AdminPage/AdminPanel';
 function App() {
   return (
     <ChakraProvider>
       <div className='App'>
         <BrowserRouter>
           <CardProvider>
-            <Navbar isLogged={'true'}/>
+            <Navbar isLogged={'true'} />
             <Routes>
               <Route exact path="/" element={<HomePage />} />
               <Route exact path="/login" element={<LoginPage />} />
@@ -26,6 +27,7 @@ function App() {
               <Route exact path='/news' element={<News />}></Route>
               <Route path="/card" element={<CardDetail />} />
               <Route path="/profil" element={<Profil />} />
+              <Route path="/admin" element={<AdminPanel />} />
             </Routes>
           </CardProvider>
         </BrowserRouter>
