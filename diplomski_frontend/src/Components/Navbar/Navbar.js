@@ -3,12 +3,14 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { Image } from "@chakra-ui/react";
 import logo from '../../Assets/Img/logo.png'
 import "./NavbarStyles.css";
-import { WrapItem, Avatar, AvatarBadge } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { Avatar } from "@chakra-ui/react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Navbar({ isLogged }) {
 	const navRef = useRef();
 	const navigate = useNavigate();
+	const location = useLocation();
+	const isAtAdminPage = location.pathname === '/admin';
 
 
 	const showNavbar = () => {
@@ -31,24 +33,25 @@ function Navbar({ isLogged }) {
 				src={logo}
 				alt='Dan Abramov'
 			/>
-			<nav ref={navRef}>
-				<a href="/">Početna</a>
-				<a href="/news">Novosti</a>
-				<a href="/seminars">Seminari</a>
-				<a href="/login">Prijavi se</a>
-				<button
-					className="nav-btn nav-close-btn"
-					onClick={showNavbar}>
-					<FaTimes />
-				</button>
-			</nav>
+			{!isAtAdminPage && (
+				<nav ref={navRef}>
+					<a href="/">Početna</a>
+					<a href="/news">Novosti</a>
+					<a href="/seminars">Seminari</a>
+					<a href="/login">Prijavi se</a>
+					<button
+						className="nav-btn nav-close-btn"
+						onClick={showNavbar}>
+						<FaTimes />
+					</button>
+				</nav>)}
 			<button
 				className="nav-btn"
 				onClick={showNavbar}>
 				<FaBars />
 			</button>
 
-			{isLogged &&
+			{isLogged && !isAtAdminPage &&
 				(<Avatar name='Kent Dodds' src='https://bit.ly/kent-c-dodds' onClick={handleClick} cursor="pointer" />
 				)}
 

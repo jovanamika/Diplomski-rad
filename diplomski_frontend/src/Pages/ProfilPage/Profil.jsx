@@ -6,12 +6,14 @@ import { useState } from 'react'
 import './Profil.scss'
 import SettingsPage from './SettingsPage';
 import PostCard from './PostCard';
+import { useNavigate } from 'react-router-dom';
 
 export default function Profil() {
   const [informationCard, setInformationCardVisible] = useState(true);
   const [seminarsCard, setSeminarsCardVisible] = useState(false);
   const [postCard, setPostCardVisible] = useState(false);
   const [settingsCard, setSettingsCardVisible] = useState(false);
+  const navigate = useNavigate();
 
   const GetInformationCard = () => {
     setSeminarsCardVisible(false);
@@ -47,6 +49,7 @@ export default function Profil() {
 
   const LogOut = () => {
     console.log('Odjava');
+    navigate("/");
   }
 
   return (
