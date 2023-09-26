@@ -20,7 +20,7 @@
 
     &__right {
         width: 70%;
-        height: 700px;
+        height: 100%;
         padding-left: 2vh;
         padding-right: 5vh;
         display: flex;
@@ -47,4 +47,3 @@
 .text-component:hover {
     color: var(--color-light-blue);
 }
-
