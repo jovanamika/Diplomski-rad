@@ -1,14 +1,16 @@
 import React from 'react'
-import AdminLogIn from './AdminLogIn'
+import '../ProfilPage/Profil.scss';
+import AdminLogIn from './AdminLogIn';
 import { Container, HStack, Text, Icon, Divider } from '@chakra-ui/react';
 import { TfiShiftRight, TfiLayers } from "react-icons/tfi";
 import { VscNewFile, VscPersonAdd, VscOrganization } from "react-icons/vsc";
 import { HiOutlineAcademicCap, HiPlusSmall } from "react-icons/hi2";
 import { IoNotificationsOutline } from "react-icons/io5";
-
-import { useState } from 'react'
-import '../ProfilPage/Profil.scss'
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Teachers from './Teachers';
+import AddTeacher from './AddTeacher';
+import PostCard from '../ProfilPage/PostCard';
 
 export default function AdminPanel() {
   const [notification, setNotification] = useState(true);
@@ -134,7 +136,7 @@ export default function AdminPanel() {
             <Icon as={VscOrganization} boxSize={5} />
             <Text py='2' marginRight={'8vh'} onClick={GetTeachers} cursor="pointer">Pregled svih predavača</Text>
           </HStack>
-          <HStack spacing={4} className={`text-component ${teachers ? 'activeText' : ''}`}>
+          <HStack spacing={4} className={`text-component ${addTeacher? 'activeText' : ''}`}>
             <Icon as={VscPersonAdd} boxSize={5} />
             <Text py='2' marginRight={'8vh'} onClick={GetAddTeacher} cursor="pointer">Dodaj predavača</Text>
           </HStack>
@@ -158,7 +160,7 @@ export default function AdminPanel() {
         </div>)}
 
         {addNews && (<div className="admin-content">
-          <p>Dodaj objavu</p>
+          <PostCard/>
         </div>)}
 
         {seminars && (<div className="admin-content">
@@ -170,11 +172,11 @@ export default function AdminPanel() {
         </div>)}
 
         {teachers && (<div className="admin-content">
-          <p>Pregled svih profesora</p>
+          <Teachers/>
         </div>)}
 
         {addTeacher && (<div className="admin-content">
-          <p>Dodaj profesora</p>
+          <AddTeacher/>
         </div>)}
 
       </div>)}

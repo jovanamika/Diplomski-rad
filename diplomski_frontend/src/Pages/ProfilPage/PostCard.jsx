@@ -35,7 +35,7 @@ export default function PostCard() {
                 />
             </FormControl>
 
-            <Stack spacing={10} direction={['column', 'row']} mt={'5vh'} align={'center'} justify={'center'} >
+            <Stack spacing={10} direction={['column', 'row']} mt={'5vh'} mb={'2vh'} align={'center'} justify={'center'} >
                 <Button className='cancel-btn'
                     w="30%"
                     style={{

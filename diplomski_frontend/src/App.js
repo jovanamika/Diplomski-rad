@@ -12,8 +12,11 @@ import CardDetail from './Pages/NewsPage/CardDetail';
 import { ChakraProvider } from '@chakra-ui/react';
 import Profil from './Pages/ProfilPage/Profil';
 import AdminPanel from './Pages/AdminPage/AdminPanel';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 function App() {
+  const theme = createTheme();
   return (
+    <ThemeProvider theme={theme}>
     <ChakraProvider>
       <div className='App'>
         <BrowserRouter>
@@ -34,6 +37,7 @@ function App() {
         <Footer />
       </div >
     </ChakraProvider>
+    </ThemeProvider>
   );
 }
 
