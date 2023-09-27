@@ -1,7 +1,7 @@
 import React from 'react'
 import AdminLogIn from './AdminLogIn'
 import { Container, HStack, Text, Icon, Divider } from '@chakra-ui/react';
-import { TfiWrite, TfiSettings, TfiAgenda, TfiShiftRight, TfiUser, TfiLayers, TfiViewList } from "react-icons/tfi";
+import { TfiShiftRight, TfiLayers } from "react-icons/tfi";
 import { VscNewFile, VscPersonAdd, VscOrganization } from "react-icons/vsc";
 import { HiOutlineAcademicCap, HiPlusSmall } from "react-icons/hi2";
 import { IoNotificationsOutline } from "react-icons/io5";
@@ -38,7 +38,7 @@ export default function AdminPanel() {
     setAddTeacher(false);
     setNews(true);
   }
-  
+
   const GetAddNews = () => {
     setNotification(false);
     setSeminars(false);
@@ -51,26 +51,42 @@ export default function AdminPanel() {
 
   const GetSeminars = () => {
     setNotification(false);
-    setTeachers(false);
-    setNews(false);
-
     setSeminars(true);
+    setTeachers(false);
+    setAddNews(false);
+    setAddSeminar(false);
+    setAddTeacher(false);
+    setNews(false);
   }
 
   const GetAddSeminar = () => {
     setNotification(false);
+    setSeminars(false);
     setTeachers(false);
+    setAddNews(false);
+    setAddTeacher(false);
     setNews(false);
-
-    setSeminars(true);
+    setAddSeminar(true);
   }
 
-  const GetSettingsCard = () => {
+  const GetTeachers = () => {
     setNotification(false);
     setSeminars(false);
+    setAddNews(false);
+    setAddTeacher(false);
     setNews(false);
-
+    setAddSeminar(false);
     setTeachers(true);
+  }
+
+  const GetAddTeacher = () => {
+    setNotification(false);
+    setSeminars(false);
+    setAddNews(false);
+    setNews(false);
+    setAddSeminar(false);
+    setTeachers(false);
+    setAddTeacher(true);
   }
 
   const LogOut = () => {
@@ -108,7 +124,7 @@ export default function AdminPanel() {
             <Icon as={HiOutlineAcademicCap} boxSize={5} />
             <Text py='2' marginRight={'8vh'} onClick={GetSeminars} cursor="pointer">Pregled svih seminara</Text>
           </HStack>
-          <HStack spacing={4} className={`text-component ${addSeminar? 'activeText' : ''}`}>
+          <HStack spacing={4} className={`text-component ${addSeminar ? 'activeText' : ''}`}>
             <Icon as={HiPlusSmall} boxSize={5} />
             <Text py='2' marginRight={'8vh'} onClick={GetAddSeminar} cursor="pointer">Dodaj seminar</Text>
           </HStack>
@@ -116,11 +132,11 @@ export default function AdminPanel() {
           <Text fontSize='xl' py='2' align='start' mt='3' >Predavači</Text>
           <HStack spacing={4} className={`text-component ${teachers ? 'activeText' : ''}`}>
             <Icon as={VscOrganization} boxSize={5} />
-            <Text py='2' marginRight={'8vh'} onClick={GetSettingsCard} cursor="pointer">Pregled svih predavača</Text>
+            <Text py='2' marginRight={'8vh'} onClick={GetTeachers} cursor="pointer">Pregled svih predavača</Text>
           </HStack>
           <HStack spacing={4} className={`text-component ${teachers ? 'activeText' : ''}`}>
             <Icon as={VscPersonAdd} boxSize={5} />
-            <Text py='2' marginRight={'8vh'} onClick={GetSettingsCard} cursor="pointer">Dodaj predavača</Text>
+            <Text py='2' marginRight={'8vh'} onClick={GetAddTeacher} cursor="pointer">Dodaj predavača</Text>
           </HStack>
 
           <Divider background={'black'} height={'1px'} mt='5' mb='3' />
@@ -138,16 +154,29 @@ export default function AdminPanel() {
         </div>)}
 
         {news && (<div className="admin-content">
-          <p>Seminari</p>
+          <p>Pregled svih objava</p>
+        </div>)}
+
+        {addNews && (<div className="admin-content">
+          <p>Dodaj objavu</p>
         </div>)}
 
         {seminars && (<div className="admin-content">
-          <p>Post</p>
+          <p>Pregled svih seminara</p>
+        </div>)}
+
+        {addSeminar && (<div className="admin-content">
+          <p>Dodaj seminar</p>
         </div>)}
 
         {teachers && (<div className="admin-content">
-          <p>Settings</p>
+          <p>Pregled svih profesora</p>
         </div>)}
+
+        {addTeacher && (<div className="admin-content">
+          <p>Dodaj profesora</p>
+        </div>)}
+
       </div>)}
     </div>
   )
