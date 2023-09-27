@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { CardFooter, Text, Button, Card, Divider, Stack, CardBody, Heading, Flex} from '@chakra-ui/react'
 import { CalendarIcon, TimeIcon } from '@chakra-ui/icons'
 import { HStack } from '@chakra-ui/react'
 export default function Seminars({ image, title, description, date, time, active }) {
+  const [isSigned, setIsSigned] = useState(false);
+
+  const SignOn = () =>{
+    //Pošalji prijavu za seminar
+    setIsSigned(!isSigned);
+  }
   return (
     <Card
       direction={{ base: 'column', sm: 'row' }}
@@ -33,9 +39,12 @@ export default function Seminars({ image, title, description, date, time, active
         </CardBody>
 
         {active && (<CardFooter align='center' justify='flex-end' width={'100%'}>
-          <Button variant='solid' colorScheme='blue' >
+          {!isSigned && <Button variant='solid' colorScheme='blue' onClick={SignOn} >
             Prijavi se
-          </Button>
+          </Button>}
+          {isSigned && <Button variant='solid' style = {{background:'var(--color-dark-blue)', color:'white'}}onClick={SignOn} >
+            Poništi prijavu
+          </Button>}
         </CardFooter>)}
       </Stack>
     </Card>
