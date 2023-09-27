@@ -19,6 +19,10 @@ function Navbar({ isLogged }) {
 		);
 	};
 
+	const handleLogo = () =>{
+		navigate("/");
+	}
+
 	const handleClick = () => {
 		navigate("/profil");
 	}
@@ -32,6 +36,8 @@ function Navbar({ isLogged }) {
 				boxSize='60px'
 				src={logo}
 				alt='Dan Abramov'
+				cursor={'pointer'}
+				onClick={handleLogo}
 			/>
 			{!isAtAdminPage && (
 				<nav ref={navRef}>
