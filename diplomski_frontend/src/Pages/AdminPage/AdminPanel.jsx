@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import Teachers from './Teachers';
 import AddTeacher from './AddTeacher';
 import PostCard from '../ProfilPage/PostCard';
+import AddSeminar from './AddSeminar';
 
 export default function AdminPanel() {
   const [notification, setNotification] = useState(true);
@@ -24,11 +25,13 @@ export default function AdminPanel() {
   const navigate = useNavigate();
 
   const GetNotification = () => {
-    setNews(false);
+    setNotification(true);
     setSeminars(false);
     setTeachers(false);
-
-    setNotification(true);
+    setAddNews(false);
+    setAddSeminar(false);
+    setAddTeacher(false);
+    setNews(false);
   };
 
   const GetNews = () => {
@@ -168,7 +171,7 @@ export default function AdminPanel() {
         </div>)}
 
         {addSeminar && (<div className="admin-content">
-          <p>Dodaj seminar</p>
+         <AddSeminar/>
         </div>)}
 
         {teachers && (<div className="admin-content">
