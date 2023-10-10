@@ -32,6 +32,7 @@ export default function Slider() {
             className="mySwiper"
             align='center'
             justify='center'
+            display='flex'
         >
             {allNews.map((card, index) => (
                 <SwiperSlide>

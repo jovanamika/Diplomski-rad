@@ -21,7 +21,7 @@ export default function AdminPanel() {
   const [addSeminar, setAddSeminar] = useState(false);
   const [teachers, setTeachers] = useState(false);
   const [addTeacher, setAddTeacher] = useState(false);
-  const [isLogged, setIsLogged] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
   const navigate = useNavigate();
 
   const GetNotification = () => {

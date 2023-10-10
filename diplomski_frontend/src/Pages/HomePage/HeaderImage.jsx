@@ -46,7 +46,7 @@ export default function HeaderImage() {
               fontFamily={'moonspace'}
               fontStyle={'bold'}
               fontSize={'18'}
-              height={'50'}>
+              height={'50px'}>
               Pregled aktuelnih seminara
             </Button>
           </Stack>
