@@ -8,6 +8,7 @@ import {
   Link,
   Icon,
   Image,
+  Flex,
 } from '@chakra-ui/react'
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 import logo from '../../Assets/Img/logo.png'
@@ -20,13 +21,16 @@ const Logo = () => {
 
 
 export default function Footer() {
+
   return (
     <Box
-      as="footer"
-      bg={'transparent'}
-      color={useColorModeValue('gray.700', 'gray.200')}
+      bg={'var(--footer-bg-color)'}
       bottom={0}
-      mt='auto'>
+      mt='auto'
+      height={'100px'}
+      justifyContent='center' 
+      alignContent='center' 
+      >
      {/*<Container
         as={Stack}
         maxW={'6xl'}
@@ -52,9 +56,10 @@ export default function Footer() {
       </Container>*/}
 
       <Box
-        borderTopWidth={1}
-        borderStyle={'solid'}
-        borderColor={useColorModeValue('gray.200', 'gray.700')}>
+        alignContent={'center'}
+        alignItems='center'     // Vertically center align items
+        display='flex'
+        height={'100%'}>
         <Container
           as={Stack}
           maxW={'6xl'}
@@ -63,16 +68,16 @@ export default function Footer() {
           spacing={4}
           justify={{ base: 'center', md: 'space-between' }}
           align={{ base: 'center', md: 'center' }}>
-          <Text>© 2023 Copyright Jovana Mika. All rights reserved</Text>
+          <Text color={'white'}>© 2023 Copyright Jovana Mika. All rights reserved</Text>
           <Stack direction={'row'} spacing={6}>
             <Link href='https://www.facebook.com/pmf.unibl.org/'>
-              <Icon as={FaFacebook} boxSize={6} color="black" mr={3} />
+              <Icon as={FaFacebook} boxSize={6} color="white" mr={3} />
             </Link>
             <Link href='https://www.instagram.com/pmfbl/'>
-              <Icon as={FaInstagram} boxSize={6} color="black" mr={3} />
+              <Icon as={FaInstagram} boxSize={6} color="white" mr={3} />
             </Link>
             <Link href='https://twitter.com/PMFBL'>
-              <Icon as={FaTwitter} boxSize={6} color="black" mr={3} />
+              <Icon as={FaTwitter} boxSize={6} color="white" mr={3} />
             </Link>
           </Stack>
         </Container>

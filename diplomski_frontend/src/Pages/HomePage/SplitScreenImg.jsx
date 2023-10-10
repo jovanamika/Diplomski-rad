@@ -27,7 +27,7 @@ export default function SplitScreenImg() {
                             Aplikacija za rukovođenje
                         </Text>
                         <br />{' '}
-                        <Text color={'blue.400'} as={'span'}>
+                        <Text color={'#081f62'} as={'span'}>
                             naučnim seminarom
                         </Text>{' '}
                     </Heading>
@@ -38,7 +38,7 @@ export default function SplitScreenImg() {
                     <Stack direction={{ base: 'column', md: 'row' }} spacing={4} align='center' justify='center'>
                         <Button
                             rounded={'full'}
-                            bg={'blue.400'}
+                            bg={'#011526'}
                             color={'white'}
                             _hover={{
                                 bg: 'blue.500',

@@ -1,47 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './News.scss'
 import Card from './Card'
-import news from '../../Assets/Img/news.jpg'
-
-
-const cardData = [
-  {
-    image: news,
-    title: 'Title for card 1',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
-  },
-  {
-    image: news,
-    title: 'Title for card 2',
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit...",
-  },
-  {
-    image: news,
-    title: 'Title for card 3',
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit...",
-  },
-  {
-    image: news,
-    title: 'Title for card 4',
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit...",
-  },
-  {
-    image: news,
-    title: 'Title for card 5',
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit...",
-  }
-];
+import slika from '../../Assets/Img/news.jpg'
 
 export default function News() {
+  const [allNews, setNews] = useState([]);
+
+  useEffect(() => {
+    console.log("News", allNews);
+    fetch("http://localhost:8080/posts")
+      .then(res => {
+        return res.json();
+      })
+      .then((data) => {
+        setNews(data);
+      });
+  }, []);
+
   return (
     <div className="news-container">
       <div className="news">
-        {cardData.map((card, index) => (
+        {allNews.map((news, index) => (
           <Card key={index}
-            image={card.image}
-            title={card.title}
-            description={card.description}
-            isFirstCard={index===0}
+            image={slika}
+            title={news.title}
+            description={news.description}
+            isFirstCard={index === 0}
           />
         ))}
       </div>

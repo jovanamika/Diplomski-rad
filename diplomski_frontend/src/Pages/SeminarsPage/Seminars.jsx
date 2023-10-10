@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { CardFooter, Text, Button, Card, Divider, Stack, CardBody, Heading, Flex} from '@chakra-ui/react'
 import { CalendarIcon, TimeIcon } from '@chakra-ui/icons'
 import { HStack } from '@chakra-ui/react'
-export default function Seminars({ image, title, description, date, time, active }) {
+export default function Seminars({title, description, date, time, active }) {
   const [isSigned, setIsSigned] = useState(false);
 
   const SignOn = () =>{

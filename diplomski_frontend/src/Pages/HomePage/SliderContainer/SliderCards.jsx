@@ -15,7 +15,7 @@ export default function SliderCards({ image, title, description, isFirstCard}) {
       // You can use react-router's Link or programmatically navigate as shown in previous answers
   };
   return (
-    <Card maxW='sm' background={'white'}>
+    <Card maxW='sm' background={'#e7e9fo'}>
     <CardBody>
       <Image
         src={image}
@@ -29,7 +29,7 @@ export default function SliderCards({ image, title, description, isFirstCard}) {
   
     <CardFooter justify='center'>
       <ButtonGroup  spacing='2' justify='center' align='center'>
-        <Button variant='solid' colorScheme='blue' width={'150%'} onClick={handleButtonClick}>
+        <Button variant='solid' bg='var(--footer-bg-color)'color='white' width={'150%'} onClick={handleButtonClick}>
           Vidi više
         </Button>
       </ButtonGroup>

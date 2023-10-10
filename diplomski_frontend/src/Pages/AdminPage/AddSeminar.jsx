@@ -1,27 +1,26 @@
-import { Container, FormControl, FormLabel, Input, FormHelperText, FormErrorMessage, Stack, Button, Textarea } from '@chakra-ui/react'
+import { Container,HStack, FormControl, FormLabel, Input, Stack, Button, Textarea } from '@chakra-ui/react'
 import React from 'react'
 import { useState } from 'react'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import dayjs from 'dayjs';
 
 export default function AddSeminar() {
     const [input, setInput] = useState('')
-    const [selectedDate, setDate] = useState(null);
+    const [value, setValue] = useState(null);
+    const [time, setTime] = useState(null);
 
     const handleInputChange = (e) => setInput(e.target.value)
 
-    const handleDateChange = (date) => {
-        console.log("DD");
-        setDate(date); //kasni za jedan change
-        const formattedDate = selectedDate
-            ? dayjs(selectedDate).format('MM/DD/YYYY')
+    const handleDateChange = () => {
+        const formattedDate = value
+            ? dayjs(value).format('MM/DD/YYYY')
             : ''; // Format the selectedDate as MM/DD/YYYY
         console.log("Datum: ", formattedDate);
     }
 
-    const isError = input === ''
     return (
         <Container justifyContent={'center'} align='center' width={'100%'} pt={'5vh'}>
             <FormControl id="title" isRequired mb={'2vh'}>
@@ -44,14 +43,25 @@ export default function AddSeminar() {
                     style={{ verticalAlign: 'top' }}
                 />
             </FormControl>
-            <Container align='left'>
+            <HStack mt='5'>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
-                        value={selectedDate}
-                        onChange={value => handleDateChange(value)} />
-                </LocalizationProvider>
-            </Container>
+                        label="Datum"
+                        value={value}
+                        onChange={(newValue) => setValue(newValue)}>
 
+                    </DatePicker>
+                </LocalizationProvider>
+
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <TimePicker
+                        label="Vrijeme"
+                        value={time}
+                        onChange={(newValue) => setTime(newValue)}
+                    />
+                </LocalizationProvider>
+            
+            </HStack>
             <Stack spacing={10} direction={['column', 'row']} mt={'5vh'} mb={'2vh'} align={'center'} justify={'center'}>
                 <Button
                     className='cancel-btn'
