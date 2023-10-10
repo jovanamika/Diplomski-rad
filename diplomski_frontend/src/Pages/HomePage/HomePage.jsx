@@ -6,10 +6,14 @@ import SliderContent from './SliderContainer/SliderContent'
 
 export default function HomePage() {
   return (
-   <div className="container">
-    <SplitScreenImg/>
-    <HeaderImage/>
-    <SliderContent/>
-   </div>
+    <div>
+      <div className="container">
+        <SplitScreenImg />
+      </div>
+      <HeaderImage />
+      <div className="container">
+        <SliderContent />
+      </div>
+    </div>
   )
 }

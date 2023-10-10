@@ -10,10 +10,9 @@
 .header {
 	display: flex;
 	align-items:center;
-	
-	height: 80px;
+	background-color: var(--footer-bg-color);
+	height: 90px;
 	padding: 0 2rem;
-	color: var(--text-color);
 	margin-bottom: 5vh;
 	z-index: 100;
 }
@@ -23,13 +22,15 @@ nav{
 }
 
 nav a {
-	color: var(--text-color);
+	color: white;
 	text-decoration: none;
 	padding: 5vh;
+	font-family:  monospace;
+	font-size:20px;
 }
 
 nav a:hover {
-	color: var(--color-blue);
+	color: var(--color-light-blue);
 }
 
 header .nav-btn {
@@ -38,7 +39,6 @@ header .nav-btn {
 	background: transparent;
 	border: none;
 	outline: none;
-	color: var(--text-color);
 	visibility: hidden;
 	opacity: 0;
 	font-size: 1.8rem;

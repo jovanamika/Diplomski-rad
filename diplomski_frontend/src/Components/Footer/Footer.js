@@ -1,24 +1,12 @@
 import {
   Box,
-  chakra,
   Container,
   Stack,
   Text,
-  useColorModeValue,
   Link,
   Icon,
-  Image,
-  Flex,
 } from '@chakra-ui/react'
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
-import logo from '../../Assets/Img/logo.png'
-
-const Logo = () => {
-  return (
-    <Image height={10} viewBox="0 0 100 28" src={logo} alt="logo" />
-  )
-}
-
 
 export default function Footer() {
 
@@ -28,10 +16,9 @@ export default function Footer() {
       bottom={0}
       mt='auto'
       height={'100px'}
-      justifyContent='center' 
-      alignContent='center' 
-      >
-     {/*<Container
+
+    >
+      {/*<Container
         as={Stack}
         maxW={'6xl'}
         py={4}

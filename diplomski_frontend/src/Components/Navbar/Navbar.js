@@ -31,7 +31,7 @@ function Navbar({ isLogged }) {
 		<header className="header">
 			<Image
 				marginLeft={'5%'}
-				marginRight={'15%'}
+				marginRight={'20%'}
 				borderRadius='full'
 				boxSize='60px'
 				src={logo}
