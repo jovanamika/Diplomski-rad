@@ -1,5 +1,4 @@
 import React from 'react'
-import '../ProfilPage/Profil.scss';
 import AdminLogIn from './AdminLogIn';
 import { Container, HStack, Text, Icon, Divider } from '@chakra-ui/react';
 import { TfiShiftRight, TfiLayers } from "react-icons/tfi";
@@ -12,6 +11,7 @@ import Teachers from './Teachers';
 import AddTeacher from './AddTeacher';
 import PostCard from '../ProfilPage/PostCard';
 import AddSeminar from './AddSeminar';
+import '../AdminPage/Admin.scss';
 
 export default function AdminPanel() {
   const [notification, setNotification] = useState(true);
@@ -21,7 +21,7 @@ export default function AdminPanel() {
   const [addSeminar, setAddSeminar] = useState(false);
   const [teachers, setTeachers] = useState(false);
   const [addTeacher, setAddTeacher] = useState(false);
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState(true);
   const navigate = useNavigate();
 
   const GetNotification = () => {
@@ -99,9 +99,9 @@ export default function AdminPanel() {
   }
 
   return (
-    <div className="profil-container">
+    <div className="admin-container">
       {!isLogged && (<AdminLogIn />)}
-      {isLogged && (<div className="profil-container__left" style={{ width: '25%' }}>
+      {isLogged && (<div className="admin-container__left" style={{ width: '25%' }}>
         <Container marginTop={'5vh'}>
           <Text fontSize='xl' py='2' align='start' >Obavještenja</Text>
           <HStack spacing={4} className={`text-component ${notification ? 'activeText' : ''}`}>
@@ -144,7 +144,7 @@ export default function AdminPanel() {
             <Text py='2' marginRight={'8vh'} onClick={GetAddTeacher} cursor="pointer">Dodaj predavača</Text>
           </HStack>
 
-          <Divider background={'black'} height={'1px'} mt='5' mb='3' />
+          <Divider background={'white'} height={'1px'} mt='5' mb='3' />
 
           <HStack spacing={4} className="text-component">
             <Icon as={TfiShiftRight} boxSize={5} />
@@ -153,7 +153,7 @@ export default function AdminPanel() {
 
         </Container>
       </div>)}
-      {isLogged && (<div className="profil-container__right">
+      {isLogged && (<div className="admin-container__right">
         {notification && (<div className="admin-content">
           <p>Zahtjevi</p>
         </div>)}

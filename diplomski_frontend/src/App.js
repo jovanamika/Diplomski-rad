@@ -15,7 +15,7 @@ import AdminPanel from './Pages/AdminPage/AdminPanel';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 function App() {
   const theme = createTheme();
-  const isAdmin = true;
+  const isAdminLogged = true;
   return (
     <ThemeProvider theme={theme}>
       <ChakraProvider>
@@ -36,7 +36,7 @@ function App() {
             </CardProvider>
           </BrowserRouter>
 
-          <Footer />
+          {!isAdminLogged && <Footer />}
         </div >
       </ChakraProvider>
     </ThemeProvider>
