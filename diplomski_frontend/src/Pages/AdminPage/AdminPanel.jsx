@@ -12,6 +12,7 @@ import AddTeacher from './AddTeacher';
 import PostCard from '../ProfilPage/PostCard';
 import AddSeminar from './AddSeminar';
 import '../AdminPage/Admin.scss';
+import AllSeminars from './AllSeminars';
 
 export default function AdminPanel() {
   const [notification, setNotification] = useState(true);
@@ -104,86 +105,102 @@ export default function AdminPanel() {
       {isLogged && (<div className="admin-container__left" style={{ width: '25%' }}>
         <Container marginTop={'5vh'}>
           <Text fontSize='xl' py='2' align='start' >Obavještenja</Text>
-          <HStack spacing={4} className={`text-component ${notification ? 'activeText' : ''}`}>
-            <Icon as={IoNotificationsOutline} boxSize={5} />
-            <Text py='2' marginRight={'8vh'} onClick={GetNotification} cursor="pointer" >
-              Pregled zahtjeva
-            </Text>
-          </HStack>
-
-
+          <Container  className={`container-component ${notification ? 'activeContainer' : ''}`} width={'100%'} borderRadius="md">
+            <HStack spacing={4} className={`text-component ${notification ? 'activeText' : ''}`}>
+              <Icon as={IoNotificationsOutline} boxSize={5} />
+              <Text py='2' marginRight={'8vh'} onClick={GetNotification} cursor="pointer" >
+                Pregled zahtjeva
+              </Text>
+            </HStack>
+          </Container>
 
           <Text fontSize='xl' py='2' align='start' mt='3' >Objave</Text>
+          <Container className={`container-component ${news ? 'activeContainer' : ''}`}  width={'100%'} borderRadius="md">
           <HStack spacing={4} className={`text-component ${news ? 'activeText' : ''}`}>
             <Icon as={TfiLayers} boxSize={5} />
             <Text py='2' marginRight={'8vh'} onClick={GetNews} cursor="pointer">Pregled svih objava</Text>
           </HStack>
+          </Container>
+          <Container className={`container-component ${addNews ? 'activeContainer' : ''}`}  width={'100%'} borderRadius="md" mt='2px'>
           <HStack spacing={4} className={`text-component ${addNews ? 'activeText' : ''}`}>
             <Icon as={VscNewFile} boxSize={5} />
             <Text py='2' marginRight={'8vh'} onClick={GetAddNews} cursor="pointer">Dodaj objavu</Text>
           </HStack>
+          </Container>
 
 
           <Text fontSize='xl' py='2' align='start' mt='3' >Seminari</Text>
+          <Container  className={`container-component ${seminars ? 'activeContainer' : ''}`} width={'100%'} borderRadius="md">
           <HStack spacing={4} className={`text-component ${seminars ? 'activeText' : ''}`}>
             <Icon as={HiOutlineAcademicCap} boxSize={5} />
             <Text py='2' marginRight={'8vh'} onClick={GetSeminars} cursor="pointer">Pregled svih seminara</Text>
           </HStack>
+          </Container>
+          <Container className={`container-component ${addSeminar ? 'activeContainer' : ''}`} width={'100%'} borderRadius="md" mt='2px'>
           <HStack spacing={4} className={`text-component ${addSeminar ? 'activeText' : ''}`}>
             <Icon as={HiPlusSmall} boxSize={5} />
             <Text py='2' marginRight={'8vh'} onClick={GetAddSeminar} cursor="pointer">Dodaj seminar</Text>
           </HStack>
+          </Container>
 
           <Text fontSize='xl' py='2' align='start' mt='3' >Predavači</Text>
+          <Container className={`container-component ${teachers ? 'activeContainer' : ''}`} width={'100%'} borderRadius="md">
           <HStack spacing={4} className={`text-component ${teachers ? 'activeText' : ''}`}>
             <Icon as={VscOrganization} boxSize={5} />
             <Text py='2' marginRight={'8vh'} onClick={GetTeachers} cursor="pointer">Pregled svih predavača</Text>
           </HStack>
-          <HStack spacing={4} className={`text-component ${addTeacher? 'activeText' : ''}`}>
+          </Container>
+          <Container className={`container-component ${addTeacher ? 'activeContainer' : ''}`} width={'100%'} borderRadius="md" mt='2px'>
+          <HStack spacing={4} className={`text-component ${addTeacher ? 'activeText' : ''}`}>
             <Icon as={VscPersonAdd} boxSize={5} />
             <Text py='2' marginRight={'8vh'} onClick={GetAddTeacher} cursor="pointer">Dodaj predavača</Text>
           </HStack>
+          </Container>
 
           <Divider background={'white'} height={'1px'} mt='5' mb='3' />
-
+          <Container  width={'100%'} borderRadius="md" className='container-component'>
           <HStack spacing={4} className="text-component">
             <Icon as={TfiShiftRight} boxSize={5} />
             <Text py='2' marginRight={'8vh'} onClick={LogOut} cursor="pointer">Odjavi se</Text>
           </HStack>
+          </Container>
 
         </Container>
-      </div>)}
-      {isLogged && (<div className="admin-container__right">
-        {notification && (<div className="admin-content">
-          <p>Zahtjevi</p>
-        </div>)}
+      </div >)
+      }
+      {
+        isLogged && (<div className="admin-container__right">
+          {notification && (<div className="admin-content">
+            <p>Zahtjevi</p>
+          </div>)}
 
-        {news && (<div className="admin-content">
-          <p>Pregled svih objava</p>
-        </div>)}
+          {news && (<div className="admin-content">
+            <p>Pregled svih objava</p>
+          </div>)}
 
-        {addNews && (<div className="admin-content">
-          <PostCard/>
-        </div>)}
+          {addNews && (<div className="admin-content">
+            <PostCard />
+          </div>)}
 
-        {seminars && (<div className="admin-content">
-          <p>Pregled svih seminara</p>
-        </div>)}
+          {seminars && (<div className="admin-content">
+            <AllSeminars />
+          </div>)}
 
-        {addSeminar && (<div className="admin-content">
-         <AddSeminar/>
-        </div>)}
+          {addSeminar && (<div className="admin-content">
+            <AddSeminar />
+          </div>)}
 
-        {teachers && (<div className="admin-content">
-          <Teachers/>
-        </div>)}
+          {teachers && (<div className="admin-content">
+            <Teachers />
+          </div>)}
 
-        {addTeacher && (<div className="admin-content">
-          <AddTeacher/>
-        </div>)}
+          {addTeacher && (<div className="admin-content">
+            <AddTeacher />
+          </div>)}
 
-      </div>)}
-    </div>
+        </div>)
+      }
+    </div >
   )
 }
 

@@ -17,7 +17,7 @@ export default function SplitScreenImg() {
     }
     return (
         <Stack minH={'50vh'} direction={{ base: 'column', md: 'row' }} mt={30}>
-            <Flex p={8} flex={1} align={'center'} justify={'center'} ml={20}>
+            <Flex p={8} flex={1} align={'center'} justify={'center'}>
                 <Stack spacing={6} w={'full'} maxW={'lg'}>
                     <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
                         <Text
@@ -54,7 +54,7 @@ export default function SplitScreenImg() {
                     </Stack>
                 </Stack>
             </Flex>
-            <Flex flex={1} align={'center'} justify={'center'}>
+            <Flex flex={1} align={'center'} justify={'center'} mr={20}>
                 <div style={{
                     width: '80%', // Adjust the width as needed
                     height: '90%', // Adjust the height as needed

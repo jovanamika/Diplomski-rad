@@ -1,0 +1,68 @@
+.wrapper {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.left-menu {
+    width: 200px;
+    font-weight: 500;
+    color: white;
+    background-color: #83B4B6;
+}
+
+.left-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.left-menu li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.left-menu li:hover {
+    cursor: pointer;
+    background-color: #A5CCC9;
+}
+
+.active{
+    background-color: rgb(116, 167, 169);
+}
+
+.right-content {
+    overflow-x: auto;
+    padding-left: 20px;
+}
+
+table {
+    table-layout: fixed;
+    white-space: nowrap;
+}
+
+th, td {
+    padding: 8px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: center;
+}
+
+th {
+    background-color: #b8dad7;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #b8dad7;
+}

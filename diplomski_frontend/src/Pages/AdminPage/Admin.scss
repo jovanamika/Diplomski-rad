@@ -33,16 +33,24 @@
             height: 100%;
             justify-content: flex-start;
             align-items: flex-start;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            //box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
 
     }
 }
+.activeContainer{
+    background: var(--color-light-blue);
+}
 
+.container-component:hover{
+    background: var(--color-light-blue);
+    opacity: 0.4;
+    color: white;
+}
 .activeText {
-    color: var(--color-blue);
+    color: white;
 }
 
 .text-component:hover {
-    color: var(--color-light-blue);
+    color: white;
 }
