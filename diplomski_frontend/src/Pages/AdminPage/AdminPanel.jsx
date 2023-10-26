@@ -7,12 +7,13 @@ import { HiOutlineAcademicCap, HiPlusSmall } from "react-icons/hi2";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Teachers from './Teachers';
-import AddTeacher from './AddTeacher';
+import Teachers from './Teachers/Teachers';
+import AddTeacher from './Teachers/AddTeacher';
 import PostCard from '../ProfilPage/PostCard';
-import AddSeminar from './AddSeminar';
+import AddSeminar from './Seminar/AddSeminar';
 import '../AdminPage/Admin.scss';
-import AllSeminars from './AllSeminars';
+import AllSeminars from './Seminar/AllSeminars';
+import Pages from './Posts/Pages';
 
 export default function AdminPanel() {
   const [notification, setNotification] = useState(true);
@@ -175,7 +176,7 @@ export default function AdminPanel() {
           </div>)}
 
           {news && (<div className="admin-content">
-            <p>Pregled svih objava</p>
+           <Pages/>
           </div>)}
 
           {addNews && (<div className="admin-content">

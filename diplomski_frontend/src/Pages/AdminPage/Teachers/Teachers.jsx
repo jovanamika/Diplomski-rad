@@ -1,5 +1,5 @@
 import React from 'react';
-import '../AdminPage/Style.scss';
+import '../../AdminPage/Style.scss';
 import { useState } from 'react';
 
 const Teachers= () => {
