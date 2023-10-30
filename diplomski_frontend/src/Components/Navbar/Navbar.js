@@ -5,12 +5,16 @@ import logo from '../../Assets/Img/logo.png'
 import "./NavbarStyles.css";
 import { Avatar } from "@chakra-ui/react";
 import { useNavigate, useLocation } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 function Navbar({ isLogged }) {
+	const {auth, setAuth} = useAuth();
 	const navRef = useRef();
 	const navigate = useNavigate();
 	const location = useLocation();
 	const isAtAdminPage = location.pathname === '/admin';
+
+	console.log(auth);
 
 
 	const showNavbar = () => {

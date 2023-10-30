@@ -1,30 +1,85 @@
 import React from 'react'
 import './LoginStyle.css'
 import { useNavigate } from 'react-router-dom';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Radio, FormControlLabel, Grid, RadioGroup } from '@mui/material';
+import useAuth from '../../Hooks/useAuth';
 
 export default function LoginForm() {
-    const navigate = useNavigate();
+    const { setAuth } = useAuth();
+    const [selectedRole, setSelectedRole] = React.useState('user');
+    const [email, setEmail] = React.useState(null);
+    const [password, setPassword] = React.useState(null);
+    const [error, setError] = React.useState("");
     const defaultTheme = createTheme();
+    const navigate = useNavigate();
+
     const onRegisterSubmit = () => {
         navigate("/registration");
     }
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
-    };
+
+    const handleLogIn = () => {
+        console.log("Podaci:");
+        console.log(email, password, selectedRole);
+        fetch(`http://localhost:8080/users/${email}/${password}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+              // Dodajte dodatne zaglavlja ovdje prema potrebi
+            }
+          })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(data => {
+            // Ovdje rukujete podacima koji su vraćeni
+            setAuth({data});
+            console.log("Data:",data); // Ispisuje podatke korisnika ako je zahtjev uspješan
+          })
+          .catch(error => {
+            // Ovdje rukujete greškama koje se mogu pojaviti tokom zahtjeva
+            console.error('There has been a problem with your fetch operation:', error);
+          });
+    }
+
+    const getLoggedUser = async () => {
+        let url = `http://localhost:8080/users/${email}/${password}`;
+        console.log("URL:", url);
+
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        };
+
+        fetch(url, requestOptions)
+            .then(res => {
+                console.log("Res", res);
+                return res.json();
+            })
+
+    }
+
+    const setData = async (res) => {
+        console.log("RESULT:", res);
+        if (res) {
+            setError("")
+            setAuth({ res })
+            navigate("/")
+        } else {
+            setError("Netacna lozinka!")
+        }
+        console.log(error);
+    }
+
     return (
         <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="xs">
@@ -38,9 +93,9 @@ export default function LoginForm() {
                     }}
                 >
                     <Typography component="h1" variant="h5">
-                     Prijava
+                        Prijava
                     </Typography>
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                    <Box component="form" noValidate sx={{ mt: 1 }}>
                         <TextField
                             margin="normal"
                             required
@@ -50,6 +105,7 @@ export default function LoginForm() {
                             name="email"
                             autoComplete="email"
                             autoFocus
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                         <TextField
                             margin="normal"
@@ -60,7 +116,29 @@ export default function LoginForm() {
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            onChange={(e) => setPassword(e.target.value)}
                         />
+                        <Grid item xs={12} spacing={10}>
+                            <RadioGroup
+                                row
+                                name="role"
+                                value={selectedRole}
+                                onChange={(event) => setSelectedRole(event.target.value)}
+                            >
+                                <FormControlLabel
+                                    value="user"
+                                    control={<Radio />}
+                                    label="Korisnik"
+                                    sx={{ ml: '5vh' }}
+                                />
+                                <FormControlLabel
+                                    value="teacher"
+                                    control={<Radio />}
+                                    label="Predavač"
+                                    sx={{ ml: '5vh' }}
+                                />
+                            </RadioGroup>
+                        </Grid>
                         <Box
                             sx={{
                                 display: 'flex',
@@ -70,9 +148,10 @@ export default function LoginForm() {
                             }}
                         >
                             <Button
-                                type="submit"
                                 variant="contained"
                                 sx={{ width: '48%', bgcolor: 'var(--footer-bg-color)', borderRadius: '25px' }}
+                                preventDefault
+                                onClick={handleLogIn}
                             >
                                 Prijavi se
                             </Button>
