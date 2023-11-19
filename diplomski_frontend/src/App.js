@@ -15,7 +15,7 @@ import AdminPanel from './Pages/AdminPage/AdminPanel';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 function App() {
   const theme = createTheme();
-  const isAdminLogged = true;
+  const isAdminLogged = false;
   return (
     <ThemeProvider theme={theme}>
       <ChakraProvider>

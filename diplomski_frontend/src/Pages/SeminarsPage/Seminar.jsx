@@ -2,24 +2,33 @@ import React, { useEffect, useState } from 'react'
 import Seminars from './Seminars'
 import './Seminar.scss'
 import { SearchIcon } from '@chakra-ui/icons'
-import { IconButton, Container, InputGroup, Input, Heading} from '@chakra-ui/react'
+import { IconButton, Container, InputGroup, Input, Heading } from '@chakra-ui/react'
 import news from '../../Assets/Img/news.jpg'
 import SingleCard from './SingleCard'
 
 export default function Seminar() {
   const [seminars, setSeminars] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [searchTitle, setSearchTitle] = useState('');
 
   useEffect(() => {
-    console.log("Seminars",seminars);
+    console.log("Seminars", seminars);
     fetch("http://localhost:8080/seminars")
-    .then(res => {
-       return res.json();
-    })
-    .then((data) => {
-       setSeminars(data);
-    });
- },[]);
+      .then(res => {
+        return res.json();
+      })
+      .then((data) => {
+        setSeminars(data);
+      });
+  }, []);
+
+  const handleSearch = () => {
+    fetch(`http://localhost:8080/seminars/find/${searchTitle}`)
+      .then(res => res.json())
+      .then((data) => {
+        setSeminars(data);
+      });
+  };
 
   return (
     <div className="seminar-container">
@@ -43,8 +52,10 @@ export default function Seminar() {
             <IconButton
               colorScheme='blue'
               aria-label='Search database'
-              icon={<SearchIcon />} />
-            <Input type='search' placeholder='Search' marginLeft={'1vh'} border='1px solid gray' />
+              icon={<SearchIcon />}
+              onClick={handleSearch} />
+            <Input type='search' placeholder='Search' marginLeft={'1vh'} border='1px solid gray' onChange={(e) => setSearchTitle(e.target.value)}
+              value={searchTitle} />
           </InputGroup>
         </Container>
         <Container marginTop={'5vh'}>

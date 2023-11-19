@@ -8,13 +8,25 @@
 
     &__left {
         height: 700px;
-        width: 15%;
+        width: 20%;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
         overflow-y: auto;
-        margin-left: 10vh;
+        //margin-left: 10vh;
         background: linear-gradient(to bottom, #e0e9ed, transparent);
+
+        .text-component{
+            color:var(--footer-bg-color);
+
+            &:hover{
+                color:var(--color-blue);
+            }
+
+            &__activeText{
+                color:var(--color-blue);
+            }
+        }
     }
 
     &__right {
@@ -22,6 +34,7 @@
         height: 100%;
         padding-left: 2vh;
         padding-right: 5vh;
+        margin-top:5vh;
         display: flex;
         flex-direction: column;
         justify-content: flex-start; 
@@ -45,12 +58,4 @@
         }
 
     }
-}
-
-.activeText {
-    color: var(--color-blue);
-}
-
-.text-component:hover {
-    color: var(--color-light-blue);
 }

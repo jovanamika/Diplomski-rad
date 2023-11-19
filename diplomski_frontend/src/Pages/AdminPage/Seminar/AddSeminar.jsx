@@ -1,16 +1,16 @@
-import { Container,HStack, FormControl, FormLabel, Input, Stack, Button, Textarea } from '@chakra-ui/react'
-import React from 'react'
-import { useState } from 'react'
+import { Container, HStack, FormControl, FormLabel, Input, Stack, Button, Textarea } from '@chakra-ui/react'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import React from 'react';
 import dayjs from 'dayjs';
 
 export default function AddSeminar() {
-    const [input, setInput] = useState('')
-    const [value, setValue] = useState(null);
-    const [time, setTime] = useState(null);
+    const [input, setInput] = React.useState('')
+    const [value, setValue] = React.useState(null);
+    const [time, setTime] = React.useState(null);
+
 
     const handleInputChange = (e) => setInput(e.target.value)
 
@@ -60,7 +60,7 @@ export default function AddSeminar() {
                         onChange={(newValue) => setTime(newValue)}
                     />
                 </LocalizationProvider>
-            
+
             </HStack>
             <Stack spacing={10} direction={['column', 'row']} mt={'5vh'} mb={'2vh'} align={'center'} justify={'center'}>
                 <Button

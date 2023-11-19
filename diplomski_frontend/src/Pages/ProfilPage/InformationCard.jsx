@@ -9,22 +9,17 @@ export default function InformationCard({ firstname, lastname, email, image }) {
             align='center'
             width='100%'
         >
-            <Wrap justify='center' align='center'>
-                <WrapItem>
-                    <Avatar size='2xl' name='Kent Dodds' src='https://bit.ly/kent-c-dodds' />{' '}
-                </WrapItem>
-            </Wrap>
             <Container mt='4vh'>
                 <HStack spacing={4} mt={'2vh'}>
-                    <Text py='2' marginRight={'8vh'}>Ime: </Text>
+                    <Text py='2' marginRight={'8vh'}><b>Ime:</b> Marko </Text>
                 </HStack>
                 <Divider />
                 <HStack spacing={4} mt={'2vh'}>
-                    <Text py='2' marginRight={'8vh'}>Prezime: </Text>
+                    <Text py='2' marginRight={'8vh'}><b>Prezime:</b> Marković </Text>
                 </HStack>
                 <Divider />
                 <HStack spacing={4} mt={'2vh'}>
-                    <Text py='2' marginRight={'8vh'}>Email: </Text>
+                    <Text py='2' marginRight={'8vh'}><b>Email:</b> marko@gmail.com</Text>
                 </HStack>
                 <Divider />
             </Container>

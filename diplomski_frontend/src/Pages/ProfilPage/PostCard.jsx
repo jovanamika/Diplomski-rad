@@ -1,10 +1,40 @@
-import { Container, FormControl, FormLabel, Input, Stack, Button, Textarea } from '@chakra-ui/react'
+import { Box, Image, Container, FormControl, FormLabel, Input, Stack, Button, Textarea, Grid, GridItem } from '@chakra-ui/react'
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Center } from "@chakra-ui/react";
+import { IconButton, Icon } from '@chakra-ui/react';
+import { FaTimes } from 'react-icons/fa';
 import React from 'react'
-import { useState } from 'react'
 
 export default function PostCard() {
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
+    const [title, setTitle] = React.useState('');
+    const [description, setDescription] = React.useState('');
+    const [modal, setModal] = React.useState(false);
+    const [selectedImage, setSelectedImage] = React.useState(null);
+
+    const toggleModal = () => {
+        setModal(!modal);
+    }
+
+    const galleryImages = [
+        'https://images.unsplash.com/photo-1600267175161-cfaa711b4a81?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        'https://images.unsplash.com/photo-1600267175161-cfaa711b4a81?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        'https://images.unsplash.com/photo-1600267175161-cfaa711b4a81?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        'https://images.unsplash.com/photo-1600267175161-cfaa711b4a81?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        'https://images.unsplash.com/photo-1600267175161-cfaa711b4a81?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        'https://images.unsplash.com/photo-1600267175161-cfaa711b4a81?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        'https://images.unsplash.com/photo-1600267175161-cfaa711b4a81?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        'https://images.unsplash.com/photo-1600267175161-cfaa711b4a81?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
+        
+    ];
+
+    const handleImageSelect = (selectedImageUrl) => {
+        setSelectedImage(selectedImageUrl);
+        console.log(selectedImageUrl);
+        toggleModal();
+    };
+
+    const clearSelectedImage = () => {
+        setSelectedImage(null);
+    }
 
     const handleTitleChange = (e) => setTitle(e.target.value);
     const handleContentChange = (e) => setDescription(e.target.value);
@@ -12,10 +42,10 @@ export default function PostCard() {
     const handleDelete = () => {
         setTitle('');
         setDescription('');
-        //connect with db
     };
 
     const handleSave = () => {
+        //connect with db(dodati url za sliku)
         console.log(title);
         console.log(description);
         addPost();
@@ -24,7 +54,7 @@ export default function PostCard() {
     }
 
     const addPost = async () => {
-        let url = "http://localhost:8080/posts" //https://img.taste.com.au/nyBI7B1_/taste/2017/08/steak-with-mushroom-sauce-129161-2.jpg
+        let url = "http://localhost:8080/posts" 
         let active = true;
         let post = { title, description, active }
         console.log("JSON", JSON.stringify(post));
@@ -39,7 +69,7 @@ export default function PostCard() {
         if (!response.ok) {
             throw new Error('data could not be fetched')
         } else {
-            window.alert('Post request sent successfully!'); // Add the alert here
+            window.alert('Post request sent successfully!'); 
             return response;;
         }
     }
@@ -73,14 +103,86 @@ export default function PostCard() {
                     onChange={handleContentChange}
                 />
             </FormControl>
+            <Center>
+                <Modal isOpen={modal} onClose={toggleModal} size="xl" isCentered>
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalHeader>Izaberite fotografiju</ModalHeader>
+                        <ModalCloseButton />
+                        <ModalBody>
+                            <Grid templateColumns="repeat(4, 1fr)" gap={4}>
+                                {galleryImages.map((imageUrl, index) => (
+                                    <GridItem key={index} spacing={10} >
+                                        <Button
+                                            width="100%"
+                                            height="150px" // Set the desired height
+                                            background={`url(${imageUrl}) center/cover`}
+                                            onClick={() => handleImageSelect(imageUrl)}
+                                            _hover={{
+                                                filter: 'brightness(0.8)', // Adjust hover effect as needed
+                                                background: `url(${imageUrl}) center/cover`, // Ensure background remains visible on hover
+                                            }}
+                                        >
+                                        </Button>
+                                    </GridItem>
+                                ))}
+                            </Grid>
+                        </ModalBody>
+                        <ModalFooter>
 
-            <Stack spacing={10} direction={['column', 'row']} mt={'5vh'} mb={'2vh'} align={'center'} justify={'center'} >
-                <Button className='cancel-btn'
+                        </ModalFooter>
+                    </ModalContent>
+                </Modal>
+            </Center>
+            {selectedImage && (<Box display="flex" justifyContent="flex-start" mb='5vh'>
+                <Image
+                    objectFit='cover'
+                    maxW={{ base: '100%', sm: '150px' }}
+                    src={selectedImage}
+                    alt='Naslovna fotografija'
+                />
+                <IconButton
+                    right='5'
+                    top='-3'
+                    icon={<Icon as={FaTimes} />} // Assuming you're using FontAwesome for the close icon
+                    color='red.500'
+                    borderRadius='full'
+                    onClick={clearSelectedImage}
+
+                />
+            </Box>)
+            }
+
+            {
+                selectedImage === null && (<Stack spacing={10} direction='column' mt={'2vh'} mb={'4vh'} align={'center'} justify={'center'}>
+                    <Button
+                        w="100%"
+                        style={{
+                            background: 'red',
+                            color: 'white',
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.background = 'darkred';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.background = 'red';
+                            e.currentTarget.style.color = 'white';
+                        }}
+                        onClick={toggleModal}
+                    >
+                        Dodaj fotografiju
+                    </Button>
+                </Stack>)
+            }
+
+            <Stack spacing={10} direction={['row']} mt={'2vh'} mb={'2vh'} align={'center'} justify={'center'}>
+                <Button
+                    className='cancel-btn'
                     w="30%"
                     style={{
                         background: 'white',
                         border: '1px solid var(--color-blue)',
-                        color: 'var(--color-blue)'
+                        color: 'var(--color-blue)',
                     }}
                     onMouseEnter={(e) => {
                         e.currentTarget.style.background = 'var(--color-dark-blue)';
@@ -94,11 +196,13 @@ export default function PostCard() {
                 >
                     Izbriši
                 </Button>
-                <Button className='confirm-btn'
+
+                <Button
+                    className='confirm-btn'
                     w="30%"
                     style={{
                         background: 'var(--color-blue)',
-                        color: 'white'
+                        color: 'white',
                     }}
                     onMouseEnter={(e) => {
                         e.currentTarget.style.background = 'var(--color-dark-blue)';

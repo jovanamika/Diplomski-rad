@@ -4,7 +4,7 @@ import { CalendarIcon, TimeIcon } from '@chakra-ui/icons'
 import { HStack } from '@chakra-ui/react'
 export default function Seminars({ title, description, date, time, active }) {
   const [isSigned, setIsSigned] = useState(false);
-  let isAtAdminPanel = true;
+  let isAtAdminPanel = false;
 
   const SignOn = () => {
     //Pošalji prijavu za seminar

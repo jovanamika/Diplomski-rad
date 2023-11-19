@@ -56,7 +56,7 @@ export default function Profil() {
     <div className="profil-container">
       <div className="profil-container__left">
         <Container marginTop={'5vh'}>
-          <HStack spacing={4} className={`text-component ${informationCard ? 'activeText' : ''}`}>
+          <HStack spacing={4} className={`text-component${informationCard ? '__activeText' : ''}`}>
             <Icon as={TfiUser} boxSize={5} />
             <Text py='2' marginRight={'8vh'} onClick={GetInformationCard} cursor="pointer" >
               Profil
@@ -65,21 +65,21 @@ export default function Profil() {
 
           <Divider background={'black'} height={'1px'} />
 
-          <HStack spacing={4} className={`text-component ${seminarsCard ? 'activeText' : ''}`}>
+          <HStack spacing={4} className={`text-component${seminarsCard ? '__activeText' : ''}`}>
             <Icon as={TfiAgenda} boxSize={5} />
             <Text py='2' marginRight={'8vh'} onClick={GetSeminarsCard} cursor="pointer">Seminari</Text>
           </HStack>
 
           <Divider background={'black'} height={'1px'} />
 
-          <HStack spacing={4} className={`text-component ${postCard ? 'activeText' : ''}`}>
+          <HStack spacing={4} className={`text-component${postCard ? '__activeText' : ''}`}>
             <Icon as={TfiWrite} boxSize={5} />
             <Text py='2' marginRight={'8vh'} onClick={GetPostCard} cursor="pointer">Napiši post</Text>
           </HStack>
 
           <Divider background={'black'} height={'1px'} />
 
-          <HStack spacing={4} className={`text-component ${settingsCard ? 'activeText' : ''}`}>
+          <HStack spacing={4} className={`text-component${settingsCard ? '__activeText' : ''}`}>
             <Icon as={TfiSettings} boxSize={5} />
             <Text py='2' marginRight={'8vh'} onClick={GetSettingsCard} cursor="pointer">Uredi profil</Text>
           </HStack>

@@ -22,40 +22,10 @@ export default function AddTeacher() {
             w={'full'}
             maxW={'md'}
             my={12}>
-            <FormControl id="userName" mb={'2vh'}>
-                <Stack direction={['column', 'row']} spacing={8}>
-                    <Center>
-                        <Avatar size="xl" icon={<AiOutlineUser fontSize='1.5rem' />}>
-                            <AvatarBadge
-                                as={IconButton}
-                                size="sm"
-                                rounded="full"
-                                top="-10px"
-                                aria-label="remove Image"
-                                style={{background:'var(--color-blue)',color:'white',border:'1px solid var(--color-blue)'}}
-                                onMouseEnter={(e) => {
-                                    e.currentTarget.style.background = 'var(--color-dark-blue)';
-                                    e.currentTarget.style.color = 'white';
-                                    e.currentTarget.style.border = '1px solid var(--color-dark-blue)';
-                                }}
-                                onMouseLeave={(e) => {
-                                    e.currentTarget.style.background = 'var(--color-blue)';
-                                    e.currentTarget.style.color = 'white';
-                                    e.currentTarget.style.border = '1px solid var(--color-blue)';
-                                }}
-                                icon={<SmallCloseIcon />}
-                            />
-                        </Avatar>
-                    </Center>
-                    <Center w="full">
-                        <Button w="full">Change Icon</Button>
-                    </Center>
-                </Stack>
-            </FormControl>
             <FormControl id="userName" isRequired mb={'2vh'}>
                 <FormLabel>Ime</FormLabel>
                 <Input
-                    placeholder="UserName"
+                    placeholder="ime"
                     _placeholder={{ color: 'gray.500' }}
                     type="text"
                 />
@@ -63,7 +33,7 @@ export default function AddTeacher() {
             <FormControl id="lastName" isRequired mb={'2vh'}>
                 <FormLabel>Prezime</FormLabel>
                 <Input
-                    placeholder="LastName"
+                    placeholder="prezime"
                     _placeholder={{ color: 'gray.500' }}
                     type="text"
                 />
@@ -71,7 +41,7 @@ export default function AddTeacher() {
             <FormControl id="email" isRequired mb={'2vh'}>
                 <FormLabel>Email</FormLabel>
                 <Input
-                    placeholder="your-email@example.com"
+                    placeholder="email"
                     _placeholder={{ color: 'gray.500' }}
                     type="email"
                 />
@@ -79,7 +49,7 @@ export default function AddTeacher() {
             <FormControl id="password" isRequired mb={'2vh'}>
                 <FormLabel>Lozinka</FormLabel>
                 <Input
-                    placeholder="password"
+                    placeholder="lozinka"
                     _placeholder={{ color: 'gray.500' }}
                     type="password"
                 />
