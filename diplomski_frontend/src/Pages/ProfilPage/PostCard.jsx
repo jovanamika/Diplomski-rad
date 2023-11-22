@@ -4,11 +4,14 @@ import { IconButton, Icon } from '@chakra-ui/react';
 import { FaTimes } from 'react-icons/fa';
 import React from 'react'
 
-export default function PostCard() {
-    const [title, setTitle] = React.useState('');
-    const [description, setDescription] = React.useState('');
+export default function PostCard({ postTitle, postDescription, image }) {
+    const [title, setTitle] = React.useState(postTitle);
+    const [description, setDescription] = React.useState(postDescription);
     const [modal, setModal] = React.useState(false);
-    const [selectedImage, setSelectedImage] = React.useState(null);
+    const [selectedImage, setSelectedImage] = React.useState(image);
+
+    console.log("Ispis");
+    console.log(image);
 
     const toggleModal = () => {
         setModal(!modal);
@@ -42,6 +45,7 @@ export default function PostCard() {
     const handleDelete = () => {
         setTitle('');
         setDescription('');
+        setSelectedImage(false);
     };
 
     const handleSave = () => {
@@ -60,7 +64,7 @@ export default function PostCard() {
         console.log("JSON", JSON.stringify(post));
 
         const requestOptions = {
-            method: 'POST',
+            method: 'PUT',
             headers: { 'Content-Type': 'application/json' }, // 'Authorization': `Bearer ${auth.res.token}`
             body: JSON.stringify(post),
         };
@@ -148,13 +152,11 @@ export default function PostCard() {
                     color='red.500'
                     borderRadius='full'
                     onClick={clearSelectedImage}
-
                 />
             </Box>)
             }
 
-            {
-                selectedImage === null && (<Stack spacing={10} direction='column' mt={'2vh'} mb={'4vh'} align={'center'} justify={'center'}>
+          {!selectedImage && (<Stack spacing={10} direction='column' mt={'2vh'} mb={'4vh'} align={'center'} justify={'center'}>
                     <Button
                         w="100%"
                         style={{
@@ -172,8 +174,8 @@ export default function PostCard() {
                     >
                         Dodaj fotografiju
                     </Button>
-                </Stack>)
-            }
+                </Stack>)}
+            
 
             <Stack spacing={10} direction={['row']} mt={'2vh'} mb={'2vh'} align={'center'} justify={'center'}>
                 <Button

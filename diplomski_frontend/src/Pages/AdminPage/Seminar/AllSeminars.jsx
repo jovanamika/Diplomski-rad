@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
-import { Box} from '@chakra-ui/react';
+import React from 'react';
+import {Box } from "@chakra-ui/react";
 import Seminars from '../../SeminarsPage/Seminars';
 import '../../SeminarsPage/Seminar.scss';
+
 export default function AllSeminars() {
-    const [seminars, setSeminars] = useState([]);
+    const [seminars, setSeminars] = React.useState([]);
+    const [modal, setModal] = React.useState(true);
 
     React.useEffect(() => {
         fetch("http://localhost:8080/seminars")

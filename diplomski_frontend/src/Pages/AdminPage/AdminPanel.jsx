@@ -148,13 +148,13 @@ export default function AdminPanel() {
           <Container className={`container-component ${teachers ? 'activeContainer' : ''}`} width={'100%'} borderRadius="md">
           <HStack spacing={4} className={`text-component ${teachers ? 'activeText' : ''}`}>
             <Icon as={VscOrganization} boxSize={5} />
-            <Text py='2' marginRight={'8vh'} onClick={GetTeachers} cursor="pointer">Pregled svih predavača</Text>
+            <Text py='2' marginRight={'8vh'} onClick={GetTeachers} cursor="pointer">Pregled svih korisnika</Text>
           </HStack>
           </Container>
           <Container className={`container-component ${addTeacher ? 'activeContainer' : ''}`} width={'100%'} borderRadius="md" mt='2px'>
           <HStack spacing={4} className={`text-component ${addTeacher ? 'activeText' : ''}`}>
             <Icon as={VscPersonAdd} boxSize={5} />
-            <Text py='2' marginRight={'8vh'} onClick={GetAddTeacher} cursor="pointer">Dodaj predavača</Text>
+            <Text py='2' marginRight={'8vh'} onClick={GetAddTeacher} cursor="pointer">Dodaj korisnika</Text>
           </HStack>
           </Container>
 

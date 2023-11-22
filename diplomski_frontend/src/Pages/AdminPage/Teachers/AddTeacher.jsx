@@ -1,3 +1,4 @@
+import React from 'react'
 import {
     Button,
     FormControl,
@@ -5,15 +6,12 @@ import {
     Input,
     Stack,
     Container,
-    Avatar,
-    AvatarBadge,
-    IconButton,
-    Center,
+    Radio,
+    RadioGroup
 } from '@chakra-ui/react'
-import { SmallCloseIcon} from '@chakra-ui/icons'
-import { AiOutlineUser } from "react-icons/ai";
 
 export default function AddTeacher() {
+    const [selectedRole, setSelectedRole] = React.useState('user');
     return (
         <Container
             align={'center'}
@@ -53,6 +51,17 @@ export default function AddTeacher() {
                     _placeholder={{ color: 'gray.500' }}
                     type="password"
                 />
+            </FormControl>
+            <FormControl id="userRole" isRequired mb={'2vh'}>
+                <RadioGroup
+                    row
+                    name="role"
+                    value={selectedRole}
+                    onChange={(event) => setSelectedRole(event.target.value)}
+                >
+                    <Radio value="user" mr={'20px'}>Korisnik</Radio>
+                    <Radio value="teacher" ml={'20px'}>Predavač</Radio>
+                </RadioGroup>
             </FormControl>
             <Stack spacing={6} direction={['column', 'row']} mt={'5vh'}>
                 <Button className='cancel-btn'
