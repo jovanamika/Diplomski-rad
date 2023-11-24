@@ -25,6 +25,8 @@ export default function AllSeminars() {
                         <Seminars key={index}
                             title={seminar.title}
                             description={seminar.description}
+                            teachers={seminar.teachers}
+                            users={seminar.users}
                             date={seminar.eventDate}
                             time={seminar.eventTime}
                             active={true}

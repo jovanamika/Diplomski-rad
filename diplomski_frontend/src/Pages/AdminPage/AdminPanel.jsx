@@ -14,6 +14,7 @@ import AddSeminar from './Seminar/AddSeminar';
 import '../AdminPage/Admin.scss';
 import AllSeminars from './Seminar/AllSeminars';
 import Pages from './Posts/Pages';
+import Notification from './Notification/Notification';
 
 export default function AdminPanel() {
   const [notification, setNotification] = useState(true);
@@ -172,7 +173,7 @@ export default function AdminPanel() {
       {
         isLogged && (<div className="admin-container__right">
           {notification && (<div className="admin-content">
-            <p>Zahtjevi</p>
+            <Notification/>
           </div>)}
 
           {news && (<div className="admin-content">

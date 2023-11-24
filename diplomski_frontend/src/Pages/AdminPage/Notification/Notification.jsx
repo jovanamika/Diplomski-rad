@@ -1,10 +1,9 @@
 import React from 'react'
 import { Box } from '@chakra-ui/react'
 import '../../SeminarsPage/Seminar.scss';
-import Post from './Post';
+import Post from '../Posts/Post';
 
-export default function Pages() {
-
+export default function Notification() {
     const [posts, setPosts] = React.useState([]);
     const [modal, setModal] = React.useState(true);
     const [title, setTitle] = React.useState("");
@@ -41,13 +40,18 @@ export default function Pages() {
         <Box p={4}>
             <div className="seminar-container__left_admin">
                 {posts.map((post, index) => (
-                    <div className="seminar-content">
-                        <Post key={index}
-                            id={post.id}
-                            title={post.title}
-                            description={post.description}
-                            active={true}
-                        />
+                    <div className="seminar-content" key={index}>
+                        {!post.active ? (
+                            <Post
+                                id={post.id}
+                                title={post.title}
+                                description={post.description}
+                                active={post.active}
+                            />
+                        ) : (
+                           <></>
+                            
+                        )}
                     </div>
                 ))}
 

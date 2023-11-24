@@ -40,6 +40,7 @@ export default function Seminar() {
               description={seminar.description}
               date={seminar.eventDate}
               time={seminar.eventTime}
+              teachers={seminar.teachers}
               active={true}
             />
           </div>

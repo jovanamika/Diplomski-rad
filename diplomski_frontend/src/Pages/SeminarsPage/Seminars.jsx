@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FormControl,FormLabel, Textarea,Container, Input,CardFooter, Text, Button, Card, Divider, Stack, CardBody, Heading, Flex, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Center } from '@chakra-ui/react'
+import { FormControl, FormLabel, Textarea, Container, Input, CardFooter, Text, Button, Card, Divider, Stack, CardBody, Heading, Flex, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Center } from '@chakra-ui/react'
 import { CalendarIcon, TimeIcon } from '@chakra-ui/icons'
 import { HStack } from '@chakra-ui/react'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -7,16 +7,28 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 
-export default function Seminars({ title, description, date, time, active }) {
+export default function Seminars({ title, description, date, time, teachers, users, active }) {
   const [isSigned, setIsSigned] = useState(false);
   const [modal, setModal] = React.useState(false);
   const [selectedImage, setSelectedImage] = React.useState(null);
+  const [teacherList, setTeachers] = useState([]);
   let isAtAdminPanel = true;
+  console.log("Seminar");
+  console.log(users);
 
   const toggleModal = () => {
     setModal(!modal);
-}
+  }
 
+  const addTeacher = (teacherName) => {
+    setTeachers([...teachers, teacherName]);
+  };
+
+  const removeTeacher = (index) => {
+    const updatedTeachers = [...teachers];
+    updatedTeachers.splice(index, 1);
+    setTeachers(updatedTeachers);
+  };
 
   const SignOn = () => {
     //Pošalji prijavu za seminar
@@ -38,6 +50,26 @@ export default function Seminars({ title, description, date, time, active }) {
           <Text py='2' align='left' marginBottom={'2vh'}>
             {description}
           </Text>
+          {teachers && teachers.length > 0 && (
+            <>
+              <Flex direction='column' alignItems='start' mb={'2vh'}>
+                <Text>
+                  <b>Predavači: </b>
+                  {teachers.map((teacher, index) => (
+                    `${teacher.firstname} ${teacher.lastname}${index < teachers.length - 1 ? ', ' : ''}`
+                  ))}
+                </Text>
+              </Flex>
+            </>
+          )}
+          {isAtAdminPanel && users.length > 0 && (
+            <Flex direction='column' alignItems='start' mb={'2vh'}>
+              <Text>
+                <b>Broj prijavljenih slušalaca: </b>
+                {users.length}
+              </Text>
+            </Flex>
+          )}
           <Divider />
           <Flex>
             <HStack spacing={2}>
@@ -90,7 +122,7 @@ export default function Seminars({ title, description, date, time, active }) {
                   <FormLabel>Naslov</FormLabel>
                   <Input
                     placeholder="Naslov"
-                    value = {title}
+                    value={title}
                     _placeholder={{ color: 'gray.500' }}
                     type="text"
                     border="1px solid black"
@@ -106,6 +138,28 @@ export default function Seminars({ title, description, date, time, active }) {
                     border="1px solid black"
                     height={"150px"}
                     style={{ verticalAlign: 'top' }}
+                  />
+                </FormControl>
+                <FormControl id="teachers" mb={'2vh'}>
+                  <FormLabel>Nastavnici</FormLabel>
+                  <HStack spacing={2} flexWrap="wrap">
+                    {teachers.map((teacher, index) => (
+                      <Tag key={index} size="lg" borderRadius="full" variant="solid" colorScheme="teal">
+                        <TagLabel>{teacher}</TagLabel>
+                        <TagCloseButton onClick={() => removeTeacher(index)} />
+                      </Tag>
+                    ))}
+                  </HStack>
+                  <Input
+                    placeholder="Dodaj nastavnika"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    onKeyPress={(e) => {
+                      if (e.key === 'Enter') {
+                        addTeacher(e.target.value);
+                        setTitle('');
+                      }
+                    }}
                   />
                 </FormControl>
                 <HStack mt='5'>
@@ -137,6 +191,6 @@ export default function Seminars({ title, description, date, time, active }) {
           </ModalContent>
         </Modal>
       </Center>
-    </Card>
+    </Card >
   )
 }
