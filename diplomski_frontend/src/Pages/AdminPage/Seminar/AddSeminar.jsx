@@ -1,4 +1,18 @@
-import { Container, HStack, FormControl, FormLabel, Input, Stack, Button, Textarea } from '@chakra-ui/react'
+import {
+    Container,
+    HStack,
+    FormControl,
+    FormLabel,
+    Input,
+    Stack,
+    Button,
+    Textarea,
+    VStack,
+    Tag,
+    TagLabel,
+    TagCloseButton,
+    Select
+} from '@chakra-ui/react'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -10,6 +24,25 @@ export default function AddSeminar() {
     const [input, setInput] = React.useState('')
     const [value, setValue] = React.useState(null);
     const [time, setTime] = React.useState(null);
+    const [tags, setTags] = React.useState([]);
+    const [selectedName, setSelectedName] = React.useState('');
+    const nameOptions = ["John Doe", "Jane Smith", "Bob Johnson"]; // Add your list of names
+
+    const handleAddTag = () => {
+        if (selectedName) {
+            const [firstName, lastName] = selectedName.split(' ');
+            const newTag = { firstName, lastName };
+            setTags([...tags, newTag]);
+            setSelectedName('');
+        }
+    };
+
+    const handleRemoveTag = (index) => {
+        const newTags = [...tags];
+        newTags.splice(index, 1);
+        setTags(newTags);
+    };
+
 
 
     const handleInputChange = (e) => setInput(e.target.value)
@@ -43,6 +76,32 @@ export default function AddSeminar() {
                     style={{ verticalAlign: 'top' }}
                 />
             </FormControl>
+            <VStack spacing={2} align="start" mb="4">
+                {tags.map((tag, index) => (
+                    <Tag key={index} size="lg" variant="solid" colorScheme="teal">
+                        <TagLabel>{`${tag.firstName} ${tag.lastName}`}</TagLabel>
+                        <TagCloseButton onClick={() => handleRemoveTag(index)} />
+                    </Tag>
+                ))}
+            </VStack>
+
+            {/* Input for adding new tags */}
+            <HStack>
+                <Select
+                    placeholder="Izaberite predavača"
+                    value={selectedName}
+                    onChange={(e) => setSelectedName(e.target.value)}
+                >
+                    {nameOptions.map((name, index) => (
+                        <option key={index} value={name}>
+                            {name}
+                        </option>
+                    ))}
+                </Select>
+                <Button onClick={handleAddTag} colorScheme="teal" pl={'2vh'} pr={'2vh'} with='100%'>
+                    Dodaj predavača
+                </Button>
+            </HStack>
             <HStack mt='5'>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker

@@ -1,5 +1,33 @@
 import React, { useState } from 'react'
-import { FormControl, FormLabel, Textarea, Container, Input, CardFooter, Text, Button, Card, Divider, Stack, CardBody, Heading, Flex, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Center } from '@chakra-ui/react'
+import {
+  FormControl,
+  FormLabel,
+  Textarea,
+  Container,
+  Input,
+  CardFooter,
+  Text,
+  Button,
+  Card,
+  Divider,
+  Stack,
+  CardBody,
+  Heading,
+  Flex,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Center,
+  VStack,
+  Tag,
+  TagLabel,
+  TagCloseButton,
+  Select
+} from '@chakra-ui/react'
 import { CalendarIcon, TimeIcon } from '@chakra-ui/icons'
 import { HStack } from '@chakra-ui/react'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -9,26 +37,32 @@ import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 
 export default function Seminars({ title, description, date, time, teachers, users, active }) {
   const [isSigned, setIsSigned] = useState(false);
-  const [modal, setModal] = React.useState(false);
+  const [modal, setModal] = React.useState(true);
   const [selectedImage, setSelectedImage] = React.useState(null);
   const [teacherList, setTeachers] = useState([]);
+  const [tags, setTags] = useState([]);
+  const [selectedName, setSelectedName] = useState('');
+  const nameOptions = ["John Doe", "Jane Smith", "Bob Johnson"]; // Add your list of names
   let isAtAdminPanel = true;
-  console.log("Seminar");
-  console.log(users);
+
+  const handleAddTag = () => {
+    if (selectedName) {
+      const [firstName, lastName] = selectedName.split(' ');
+      const newTag = { firstName, lastName };
+      setTags([...tags, newTag]);
+      setSelectedName('');
+    }
+  };
+
+  const handleRemoveTag = (index) => {
+    const newTags = [...tags];
+    newTags.splice(index, 1);
+    setTags(newTags);
+  };
 
   const toggleModal = () => {
     setModal(!modal);
   }
-
-  const addTeacher = (teacherName) => {
-    setTeachers([...teachers, teacherName]);
-  };
-
-  const removeTeacher = (index) => {
-    const updatedTeachers = [...teachers];
-    updatedTeachers.splice(index, 1);
-    setTeachers(updatedTeachers);
-  };
 
   const SignOn = () => {
     //Pošalji prijavu za seminar
@@ -140,28 +174,35 @@ export default function Seminars({ title, description, date, time, teachers, use
                     style={{ verticalAlign: 'top' }}
                   />
                 </FormControl>
-                <FormControl id="teachers" mb={'2vh'}>
-                  <FormLabel>Nastavnici</FormLabel>
-                  <HStack spacing={2} flexWrap="wrap">
-                    {teachers.map((teacher, index) => (
-                      <Tag key={index} size="lg" borderRadius="full" variant="solid" colorScheme="teal">
-                        <TagLabel>{teacher}</TagLabel>
-                        <TagCloseButton onClick={() => removeTeacher(index)} />
-                      </Tag>
+
+                <VStack spacing={2} align="start" mb="4">
+                  {tags.map((tag, index) => (
+                    <Tag key={index} size="lg" variant="solid" colorScheme="teal">
+                      <TagLabel>{`${tag.firstName} ${tag.lastName}`}</TagLabel>
+                      <TagCloseButton onClick={() => handleRemoveTag(index)} />
+                    </Tag>
+                  ))}
+                </VStack>
+
+                {/* Input for adding new tags */}
+                <HStack>
+                  <Select
+                    placeholder="Izaberite predavača"
+                    value={selectedName}
+                    onChange={(e) => setSelectedName(e.target.value)}
+                  >
+                    {nameOptions.map((name, index) => (
+                      <option key={index} value={name}>
+                        {name}
+                      </option>
                     ))}
-                  </HStack>
-                  <Input
-                    placeholder="Dodaj nastavnika"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    onKeyPress={(e) => {
-                      if (e.key === 'Enter') {
-                        addTeacher(e.target.value);
-                        setTitle('');
-                      }
-                    }}
-                  />
-                </FormControl>
+                  </Select>
+                  <Button onClick={handleAddTag} colorScheme="teal" pl={'2vh'} pr={'2vh'} with='100%'>
+                    Dodaj predavača
+                  </Button>
+                </HStack>
+
+
                 <HStack mt='5'>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
