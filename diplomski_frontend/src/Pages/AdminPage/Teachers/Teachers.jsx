@@ -1,9 +1,24 @@
 import React from 'react';
 import '../../AdminPage/Style.scss';
-import { Icon } from '@chakra-ui/react';
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { TfiPencilAlt } from "react-icons/tfi";
-import { FormControl, FormLabel,Container, Input, Button, Stack,Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Center } from '@chakra-ui/react'
+import {
+  FormControl,
+  FormLabel,
+  Container,
+  Input,
+  Button,
+  Stack,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Center,
+  Icon
+} from '@chakra-ui/react'
 import {
   Radio,
   RadioGroup
@@ -14,89 +29,31 @@ const Teachers = () => {
   const [activeItem, setActiveItem] = React.useState('Svi studenti'); //u zavisnosti od activeItem prikazujemo 
   const [modal, setModal] = React.useState(false);
   const [selectedRole, setSelectedRole] = React.useState('user');
+  const [users, setUsers] = React.useState([]);
 
+
+  React.useEffect(() => {
+    fetch("http://localhost:8080/users")
+      .then(res => {
+        return res.json();
+      })
+      .then((data) => {
+        setUsers(data);
+      });
+  }, []);
+
+  console.log(users);
   const toggleModal = () => {
     setModal(!modal);
   }
-  //podatke
-  const handleUpdate = (item) => {
 
+  const handleUpdate = (item) => {
+    //povezati sa bazom put 
   };
 
   const handleDelete = () => {
-
+    //povezati sa bazom
   }
-
-  //učitati korisnike iz baze!
-
-  const students = [
-    {
-      id: 1,
-      name: 'John Doe',
-      email: 'john.doe@example.com',
-      description: 'Lorem ipsum dolor sit amet',
-      createdDate: '2023-05-01',
-      updatedDate: '2023-05-10',
-      priority: 'High',
-      status: 'Active',
-      therapist: 'Dr. Smith',
-    },
-    {
-      id: 2,
-      name: 'John Doe',
-      email: 'john.doe@example.com',
-      description: 'Lorem ipsum dolor sit amet',
-      createdDate: '2023-05-01',
-      updatedDate: '2023-05-10',
-      priority: 'High',
-      status: 'Active',
-      therapist: 'Dr. Smith',
-    },
-    {
-      id: 3,
-      name: 'John Doe',
-      email: 'john.doe@example.com',
-      description: 'Lorem ipsum dolor sit amet',
-      createdDate: '2023-05-01',
-      updatedDate: '2023-05-10',
-      priority: 'High',
-      status: 'Active',
-      therapist: 'Dr. Smith',
-    },
-    {
-      id: 4,
-      name: 'John Doe',
-      email: 'john.doe@example.com',
-      description: 'Lorem ipsum dolor sit amet',
-      createdDate: '2023-05-01',
-      updatedDate: '2023-05-10',
-      priority: 'High',
-      status: 'Active',
-      therapist: 'Dr. Smith',
-    },
-    {
-      id: 5,
-      name: 'John Doe',
-      email: 'john.doe@example.com',
-      description: 'Lorem ipsum dolor sit amet',
-      createdDate: '2023-05-01',
-      updatedDate: '2023-05-10',
-      priority: 'High',
-      status: 'Active',
-      therapist: 'Dr. Smith',
-    },
-    {
-      id: 6,
-      name: 'John Doe',
-      email: 'john.doe@example.com',
-      description: 'Lorem ipsum dolor sit amet',
-      createdDate: '2023-05-01',
-      updatedDate: '2023-05-10',
-      priority: 'High',
-      status: 'Active',
-      therapist: 'Dr. Smith',
-    }
-  ];
 
   return (
     <div>
@@ -113,12 +70,12 @@ const Teachers = () => {
               </tr>
             </thead>
             <tbody>
-              {students.map((student) => (
-                <tr key={student.id}>
-                  <td>{student.name}</td>
-                  <td>{student.email}</td>
-                  <td>{student.description}</td>
-                  <td>{student.createdDate}</td>
+              {users.map((user) => (
+                <tr key={user.id}>
+                  <td>{user.firstname}</td>
+                  <td>{user.lastname}</td>
+                  <td>{user.email}</td>
+                  <td>{user.role.name}</td>
                   <td><Icon className="icon__update" as={TfiPencilAlt} boxSize={5} onClick={toggleModal} /> <Icon className='icon__delete' as={RiDeleteBin6Line} boxSize={5} onClick={handleDelete} /></td>
                 </tr>
               ))}
@@ -139,7 +96,7 @@ const Teachers = () => {
                 w={'full'}
                 spacing={4}
                 maxW={'md'}
-                >
+              >
                 <FormControl id="userName" isRequired mb={'2vh'}>
                   <FormLabel>Ime</FormLabel>
                   <Input

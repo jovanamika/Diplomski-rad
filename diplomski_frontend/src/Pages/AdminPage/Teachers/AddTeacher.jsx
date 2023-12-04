@@ -1,105 +1,176 @@
-import React from 'react'
+import React from 'react';
 import {
     Button,
-    FormControl,
-    FormLabel,
-    Input,
-    Stack,
-    Container,
+    FormControlLabel,
+    Grid,
     Radio,
-    RadioGroup
-} from '@chakra-ui/react'
+    RadioGroup,
+    Typography,
+    Container,
+    TextField,
+    Box
+} from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 export default function AddTeacher() {
     const [selectedRole, setSelectedRole] = React.useState('user');
-    return (
-        <Container
-            align={'center'}
-            justify={'center'}
-            spacing={4}
-            w={'full'}
-            maxW={'md'}
-            my={12}>
-            <FormControl id="userName" isRequired mb={'2vh'}>
-                <FormLabel>Ime</FormLabel>
-                <Input
-                    placeholder="ime"
-                    _placeholder={{ color: 'gray.500' }}
-                    type="text"
-                />
-            </FormControl>
-            <FormControl id="lastName" isRequired mb={'2vh'}>
-                <FormLabel>Prezime</FormLabel>
-                <Input
-                    placeholder="prezime"
-                    _placeholder={{ color: 'gray.500' }}
-                    type="text"
-                />
-            </FormControl>
-            <FormControl id="email" isRequired mb={'2vh'}>
-                <FormLabel>Email</FormLabel>
-                <Input
-                    placeholder="email"
-                    _placeholder={{ color: 'gray.500' }}
-                    type="email"
-                />
-            </FormControl>
-            <FormControl id="password" isRequired mb={'2vh'}>
-                <FormLabel>Lozinka</FormLabel>
-                <Input
-                    placeholder="lozinka"
-                    _placeholder={{ color: 'gray.500' }}
-                    type="password"
-                />
-            </FormControl>
-            <FormControl id="userRole" isRequired mb={'2vh'}>
-                <RadioGroup
-                    row
-                    name="role"
-                    value={selectedRole}
-                    onChange={(event) => setSelectedRole(event.target.value)}
-                >
-                    <Radio value="user" mr={'20px'}>Korisnik</Radio>
-                    <Radio value="teacher" ml={'20px'}>Predavač</Radio>
-                </RadioGroup>
-            </FormControl>
-            <Stack spacing={6} direction={['column', 'row']} mt={'5vh'}>
-                <Button className='cancel-btn'
-                    w="full"
-                    style={{
-                        background: 'white',
-                        border: '1px solid var(--color-blue)',
-                        color: 'var(--color-blue)'
-                    }}
-                    onMouseEnter={(e) => {
-                        e.currentTarget.style.background = 'var(--color-dark-blue)';
-                        e.currentTarget.style.color = 'white';
-                    }}
-                    onMouseLeave={(e) => {
-                        e.currentTarget.style.background = 'white';
-                        e.currentTarget.style.color = 'var(--color-blue)';
-                    }}
-                >
-                    Odustani
-                </Button>
-                <Button className='confirm-btn'
-                    w="full"
-                    style={{
-                        background: 'var(--color-blue)',
-                        color: 'white'
-                    }}
-                    onMouseEnter={(e) => {
-                        e.currentTarget.style.background = 'var(--color-dark-blue)';
-                    }}
-                    onMouseLeave={(e) => {
-                        e.currentTarget.style.background = 'var(--color-blue)';
-                        e.currentTarget.style.color = 'white';
-                    }}
-                >
-                    Sačuvaj
-                </Button>
-            </Stack>
-        </Container>
+    const [firstname, setFirstname] = React.useState(null);
+    const [lastname, setLastname] = React.useState(null);
+    const [email, setEmail] = React.useState(null);
+    const [password, setPassword] = React.useState(null);
+    const defaultTheme = createTheme();
 
-    )
+    const handleDelete = () => {
+        setFirstname('');
+        setLastname('');
+        setEmail('');
+        setPassword('');
+        setSelectedRole('user');
+    }
+
+    const handleSubmit = () => {
+        console.log(firstname, lastname, email, password, selectedRole);
+        addUser();
+        handleDelete();
+    }
+
+
+    const addUser = async () => {
+        let url;
+        if (selectedRole === 'user') {
+            url = "http://localhost:8080/users/1";
+        } else
+            url = "http://localhost:8080/users/2";
+
+        let user = { firstname, lastname, email, password }
+        console.log("JSON", JSON.stringify(user));
+
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }, // 'Authorization': `Bearer ${auth.res.token}`
+            body: JSON.stringify(user),
+        };
+
+        const response = await fetch(url, requestOptions)
+        if (!response.ok) {
+            throw new Error('data could not be fetched')
+        } else {
+            window.alert('Post request sent successfully!');
+            return response;;
+        }
+    }
+
+    return (
+        <ThemeProvider theme={defaultTheme}>
+            <Container component="main" alignItems='center' justifyContent='center'>
+
+                <Box
+                    sx={{
+                        marginTop: 8,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        width: '60%',
+                        mr:'50vh'
+                    }}
+                >
+                    <Typography component="h1" variant="h5">
+                        Forma za unos korisnika
+                    </Typography>
+                    <Box component="form" noValidate sx={{ mt: 1 }}>
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="firstname"
+                            label="Ime"
+                            name="firstname"
+                            value={firstname}
+                            autoFocus
+                            onChange={(e) => setFirstname(e.target.value)}
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="lastname"
+                            label="Prezime"
+                            name="lastname"
+                            value={lastname}
+                            autoFocus
+                            onChange={(e) => setLastname(e.target.value)}
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="email"
+                            label="Email"
+                            name="email"
+                            value={email}
+                            autoFocus
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="password"
+                            label="Lozinka"
+                            type="password"
+                            id="password"
+                            value={password}
+                            autoFocus
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <Grid item xs={12} spacing={10}>
+                            <RadioGroup
+                                row
+                                name="role"
+                                value={selectedRole}
+                                onChange={(event) => setSelectedRole(event.target.value)}
+                            >
+                                <FormControlLabel
+                                    value="user"
+                                    control={<Radio />}
+                                    label="Korisnik"
+                                    sx={{ ml: '15vh', mr: '6vh' }}
+                                />
+                                <FormControlLabel
+                                    value="teacher"
+                                    control={<Radio />}
+                                    label="Predavač"
+                                    sx={{ ml: '5vh' }}
+                                />
+                            </RadioGroup>
+                        </Grid>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                marginTop: '16px',
+                            }}
+                        >
+                            <Button
+                                variant="contained"
+                                sx={{ width: '48%', bgcolor: 'var(--footer-bg-color)', borderRadius: '25px' }}
+                                preventDefault
+                                onClick={handleDelete}
+                            >
+                                Odustani
+                            </Button>
+                            <Button
+                                type="button"
+                                variant="contained"
+                                sx={{ width: '48%', bgcolor: 'var(--footer-bg-color)', borderRadius: '25px' }}
+                                onClick={handleSubmit}
+                            >
+                                Sačuvaj
+                            </Button>
+                        </Box>
+                    </Box>
+                </Box>
+            </Container>
+        </ThemeProvider>
+    );
 }

@@ -64,7 +64,7 @@ export default function PostCard({ postTitle, postDescription, image }) {
         console.log("JSON", JSON.stringify(post));
 
         const requestOptions = {
-            method: 'PUT',
+            method: 'POST',
             headers: { 'Content-Type': 'application/json' }, // 'Authorization': `Bearer ${auth.res.token}`
             body: JSON.stringify(post),
         };

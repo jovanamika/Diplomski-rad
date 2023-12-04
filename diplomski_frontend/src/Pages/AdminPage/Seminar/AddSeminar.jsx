@@ -21,10 +21,11 @@ import React from 'react';
 import dayjs from 'dayjs';
 
 export default function AddSeminar() {
-    const [input, setInput] = React.useState('')
-    const [value, setValue] = React.useState(null);
+    const [date, setDate] = React.useState(null);
     const [time, setTime] = React.useState(null);
     const [tags, setTags] = React.useState([]);
+    const [title, setTitle] = React.useState(null);
+    const [description, setDescription] = React.useState(null);
     const [selectedName, setSelectedName] = React.useState('');
     const nameOptions = ["John Doe", "Jane Smith", "Bob Johnson"]; // Add your list of names
 
@@ -43,37 +44,52 @@ export default function AddSeminar() {
         setTags(newTags);
     };
 
+    const handleTimeChange = (e) => {
+        setTime(e.target.value);
+    };
 
-
-    const handleInputChange = (e) => setInput(e.target.value)
-
-    const handleDateChange = () => {
-        const formattedDate = value
-            ? dayjs(value).format('MM/DD/YYYY')
+    const handleSubmit = () => {
+        console.log("SUBMIT");
+        const formattedDate = date
+            ? dayjs(date).format('MM/DD/YYYY')
             : ''; // Format the selectedDate as MM/DD/YYYY
         console.log("Datum: ", formattedDate);
+        console.log(title, description, date, time, tags);
     }
+
+    const handleDelete = () => {
+        setTitle('');
+        setDescription('');
+        setDate(null);
+        setTime(null);
+        setTags([]);
+        setSelectedName('');
+    }
+
 
     return (
         <Container justifyContent={'center'} align='center' width={'100%'} pt={'5vh'}>
             <FormControl id="title" isRequired mb={'2vh'}>
                 <FormLabel>Naslov</FormLabel>
                 <Input
-                    placeholder="Title"
+                    placeholder="Naslov"
                     _placeholder={{ color: 'gray.500' }}
                     type="text"
-                    border="1px solid black"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                 />
             </FormControl>
             <FormControl id="description" isRequired mb={'2vh'}>
                 <FormLabel></FormLabel>
                 <Textarea
-                    placeholder="Content"
+                    value={description}
+                    placeholder="Sadržaj"
                     _placeholder={{ color: 'gray.500' }}
                     type="text"
-                    border="1px solid black"
+                    //border="1px solid black"
                     height={"150px"}
                     style={{ verticalAlign: 'top' }}
+                    onChange={(e) => setDescription(e.target.value)}
                 />
             </FormControl>
             <VStack spacing={2} align="start" mb="4">
@@ -85,12 +101,12 @@ export default function AddSeminar() {
                 ))}
             </VStack>
 
-            {/* Input for adding new tags */}
             <HStack>
                 <Select
                     placeholder="Izaberite predavača"
                     value={selectedName}
                     onChange={(e) => setSelectedName(e.target.value)}
+                    width={'80%'}
                 >
                     {nameOptions.map((name, index) => (
                         <option key={index} value={name}>
@@ -98,27 +114,33 @@ export default function AddSeminar() {
                         </option>
                     ))}
                 </Select>
-                <Button onClick={handleAddTag} colorScheme="teal" pl={'2vh'} pr={'2vh'} with='100%'>
-                    Dodaj predavača
+                <Button onClick={handleAddTag} colorScheme="teal" pl={'2vh'} pr={'2vh'} width='20%'>
+                    Dodaj
                 </Button>
             </HStack>
             <HStack mt='5'>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
                         label="Datum"
-                        value={value}
-                        onChange={(newValue) => setValue(newValue)}>
+                        value={date}
+                        onChange={(newValue) => setDate(newValue)}
+                    >
 
                     </DatePicker>
                 </LocalizationProvider>
 
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <TimePicker
-                        label="Vrijeme"
-                        value={time}
-                        onChange={(newValue) => setTime(newValue)}
-                    />
-                </LocalizationProvider>
+
+                <Input
+                    placeholder="hh:mm:ss"
+                    _placeholder={{ color: 'gray.500' }}
+                    type="text"
+                    height={"56px"}
+                    width={'50%'}
+                    marginLeft={'2vh'}
+                    value={time || ''}
+                    onChange={handleTimeChange}
+                />
+
 
             </HStack>
             <Stack spacing={10} direction={['column', 'row']} mt={'5vh'} mb={'2vh'} align={'center'} justify={'center'}>
@@ -138,6 +160,7 @@ export default function AddSeminar() {
                         e.currentTarget.style.background = 'white';
                         e.currentTarget.style.color = 'var(--color-blue)';
                     }}
+                    onClick={handleDelete}
                 >
                     Izbriši
                 </Button>
@@ -155,6 +178,7 @@ export default function AddSeminar() {
                         e.currentTarget.style.background = 'var(--color-blue)';
                         e.currentTarget.style.color = 'white';
                     }}
+                    onClick={handleSubmit}
                 >
                     Sačuvaj
                 </Button>

@@ -14,7 +14,7 @@
         overflow-y: auto;
         padding-left: 5vh;
         background: var(--footer-bg-color);
-        color:white;
+        color: white;
     }
 
     &__right {
@@ -22,13 +22,13 @@
         height: 100%;
         padding-left: 2vh;
         padding-right: 5vh;
-        padding-top:5vh;
+        padding-top: 5vh;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start; 
+        justify-content: flex-start;
         align-items: flex-start;
 
-        .admin-content{
+        .admin-content {
             width: 100%;
             height: 100%;
             justify-content: flex-start;
@@ -38,15 +38,17 @@
 
     }
 }
-.activeContainer{
+
+.activeContainer {
     background: var(--color-light-blue);
 }
 
-.container-component:hover{
+.container-component:hover {
     background: var(--color-light-blue);
     opacity: 0.4;
     color: white;
 }
+
 .activeText {
     color: white;
 }
