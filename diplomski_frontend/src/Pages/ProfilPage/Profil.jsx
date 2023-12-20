@@ -2,48 +2,59 @@ import React from 'react'
 import InformationCard from './InformationCard'
 import { Container, HStack, Text, Icon, Divider } from '@chakra-ui/react';
 import { TfiWrite, TfiSettings, TfiAgenda, TfiShiftRight, TfiIdBadge, TfiHome, TfiUser } from "react-icons/tfi";
-import { useState } from 'react'
 import './Profil.scss'
 import SettingsPage from './SettingsPage';
 import PostCard from './PostCard';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../../Hooks/useAuth';
 
 export default function Profil() {
-  const [informationCard, setInformationCardVisible] = useState(true);
-  const [seminarsCard, setSeminarsCardVisible] = useState(false);
-  const [postCard, setPostCardVisible] = useState(false);
-  const [settingsCard, setSettingsCardVisible] = useState(false);
+  const [informationCard, setInformationCardVisible] = React.useState(true);
+  const [postCard, setPostCardVisible] = React.useState(false);
+  const [settingsCard, setSettingsCardVisible] = React.useState(false);
+  const [firstname, setFirstname] = React.useState(null);
+  const [lastname, setLastname] = React.useState(null);
+  const [email, setEmail] = React.useState(null);
+  const [password, setPassword] = React.useState(null);
+  const [id, setId] = React.useState(null);
+  const { auth, setAuth } = useAuth();
   const navigate = useNavigate();
 
+  console.log(auth.data);
+
+  React.useEffect(() => {
+    if (auth.data) {
+      fetch('http://localhost:8080/users/' + auth.data.id)
+        .then(res => {
+          return res.json();
+        })
+        .then((res) => {
+          setId(res.id);
+          setFirstname(res.firstname);
+          setLastname(res.lastname);
+          setEmail(res.email);
+          setPassword(res.password);
+        });
+    }
+  }, []);
+
+
   const GetInformationCard = () => {
-    setSeminarsCardVisible(false);
     setPostCardVisible(false);
     setSettingsCardVisible(false);
 
     setInformationCardVisible(true);
   };
 
-  const GetSeminarsCard = () => {
-    setInformationCardVisible(false);
-    setPostCardVisible(false);
-    setSettingsCardVisible(false);
-
-    setSeminarsCardVisible(true);
-  }
-
   const GetPostCard = () => {
     setInformationCardVisible(false);
     setSettingsCardVisible(false);
-    setSeminarsCardVisible(false);
-
     setPostCardVisible(true);
   }
 
   const GetSettingsCard = () => {
     setInformationCardVisible(false);
     setPostCardVisible(false);
-    setSeminarsCardVisible(false);
-
     setSettingsCardVisible(true);
   }
 
@@ -61,13 +72,6 @@ export default function Profil() {
             <Text py='2' marginRight={'8vh'} onClick={GetInformationCard} cursor="pointer" >
               Profil
             </Text>
-          </HStack>
-
-          <Divider background={'black'} height={'1px'} />
-
-          <HStack spacing={4} className={`text-component${seminarsCard ? '__activeText' : ''}`}>
-            <Icon as={TfiAgenda} boxSize={5} />
-            <Text py='2' marginRight={'8vh'} onClick={GetSeminarsCard} cursor="pointer">Seminari</Text>
           </HStack>
 
           <Divider background={'black'} height={'1px'} />
@@ -95,19 +99,18 @@ export default function Profil() {
       </div>
       <div className="profil-container__right">
         {informationCard && (<div className="profil-content">
-          <InformationCard />
-        </div>)}
-
-        {seminarsCard && (<div className="profil-content">
-          <p>Seminari</p>
+          <InformationCard firstname={firstname}
+            lastname={lastname}
+            email={email}
+            password={password} />
         </div>)}
 
         {postCard && (<div className="profil-content">
-          <PostCard/>
+          <PostCard />
         </div>)}
 
         {settingsCard && (<div className="profil-content">
-          <SettingsPage/>
+          <SettingsPage />
         </div>)}
       </div>
     </div>

@@ -14,9 +14,6 @@ function Navbar({ isLogged }) {
 	const location = useLocation();
 	const isAtAdminPage = location.pathname === '/admin';
 
-	console.log(auth);
-
-
 	const showNavbar = () => {
 		navRef.current.classList.toggle(
 			"responsive_nav"
@@ -39,7 +36,6 @@ function Navbar({ isLogged }) {
 				borderRadius='full'
 				boxSize='60px'
 				src={logo}
-				alt='Dan Abramov'
 				cursor={'pointer'}
 				onClick={handleLogo}
 			/>
@@ -57,12 +53,14 @@ function Navbar({ isLogged }) {
 				</nav>)}
 			<button
 				className="nav-btn"
-				onClick={showNavbar}>
+				onClick={showNavbar}
+				style={{ color: 'white', paddingLeft:'25%', paddingRight:'10px'}}
+				>
 				<FaBars />
 			</button>
 
 			{isLogged && !isAtAdminPage &&
-				(<Avatar name='Kent Dodds' src='https://bit.ly/kent-c-dodds' onClick={handleClick} cursor="pointer" />
+				( <Avatar className = "avatar" src='https://bit.ly/broken-link' onClick={handleClick} cursor={"pointer"}/>
 				)}
 
 		</header>

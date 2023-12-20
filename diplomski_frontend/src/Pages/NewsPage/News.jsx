@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import './News.scss'
 import Card from './Card'
-import slika from '../../Assets/Img/news.jpg'
 
 export default function News() {
   const [allNews, setNews] = useState([]);
+  let firstCard = 0;
+  console.log(allNews);
 
   useEffect(() => {
-    console.log("News", allNews);
     fetch("http://localhost:8080/posts")
       .then(res => {
         return res.json();
@@ -20,13 +20,16 @@ export default function News() {
   return (
     <div className="news-container">
       <div className="news">
-        {allNews.map((news, index) => (
-          <Card key={index}
-            image={slika}
-            title={news.title}
-            description={news.description}
-            isFirstCard={index === 0}
-          />
+      {allNews.map((news, index) => (
+          news.active ? (
+            <Card
+              key={index}
+              image={news.imageUrl}
+              title={news.title}
+              description={news.description}
+              isFirstCard={firstCard++ === 0}
+            />
+          ) : null
         ))}
       </div>
     </div>

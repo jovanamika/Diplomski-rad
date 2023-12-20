@@ -37,10 +37,10 @@ export default function Notification() {
     ];
 
     return (
-        <Box p={4}>
+        <Box mt='0'>
             <div className="seminar-container__left_admin">
                 {posts.map((post, index) => (
-                    <div className="seminar-content" key={index}>
+                    <div key={index}>
                         {!post.active ? (
                             <Post
                                 id={post.id}

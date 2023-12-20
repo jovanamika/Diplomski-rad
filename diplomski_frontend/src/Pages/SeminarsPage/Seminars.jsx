@@ -43,7 +43,7 @@ export default function Seminars({ title, description, date, time, teachers, use
   const [tags, setTags] = useState([]);
   const [selectedName, setSelectedName] = useState('');
   const nameOptions = ["John Doe", "Jane Smith", "Bob Johnson"]; // Add your list of names
-  let isAtAdminPanel = true;
+  let isAtAdminPanel = false;
 
   const handleAddTag = () => {
     if (selectedName) {
@@ -71,15 +71,16 @@ export default function Seminars({ title, description, date, time, teachers, use
   return (
     <Card
       direction={{ base: 'column', sm: 'row' }}
-      overflow='hidden'
+      
       variant='outline'
       justify='center'
       align='center'
       width={'100%'}
+     
     >
       <Stack justify='center' align='center' width={'90%'}>
         <CardBody justify='center' align='center' width={'100%'}>
-          <Heading size='md' marginBottom={'2vh'}>{title}</Heading>
+          <Heading size='md' paddingTop={'2vh'}>{title}</Heading>
 
           <Text py='2' align='left' marginBottom={'2vh'}>
             {description}

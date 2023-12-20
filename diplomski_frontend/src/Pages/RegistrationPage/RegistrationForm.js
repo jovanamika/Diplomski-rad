@@ -40,7 +40,7 @@ export default function RegistrationForm() {
     }
 
     const addUser = async (res) => {
-        if(res){
+       if(res){
             setError("")
             let url = "http://localhost:8080/users/1";
       
@@ -52,15 +52,19 @@ export default function RegistrationForm() {
               body: JSON.stringify(user),
             };
       
-            fetch(url, requestOptions).then(res => res.json()).then(res => setAuth({res})).finally(navigate("/"));
+            fetch(url, requestOptions).
+            then(res => res.json()).
+            finally(navigate("/login"));
+            console.log(res);
             console.log("Success");
           }else{
             setError("Korisnik sa tim e-mailom vec postoji!")
           }
           console.log(error);
+          console.log(firstname,lastname,email,password);
     }
 
-    const handleClick = () => {
+    const handleClick = async() => {
         console.log("INF: ",
             firstname, lastname, email, password
         );
@@ -76,26 +80,6 @@ export default function RegistrationForm() {
         console.log(error);
 
     };
-
-   /* const addUser = async () => {
-        let url = "http://localhost:8080/user"
-        let user = { firstname, lastname, email, password }
-        console.log("JSON", JSON.stringify(user));
-
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' }, // 'Authorization': `Bearer ${auth.res.token}`
-            body: JSON.stringify(user),
-        };
-
-        const response = await fetch(url, requestOptions)
-        if (!response.ok) {
-            throw new Error('data could not be fetched')
-        } else {
-            window.alert('User added successfully!'); // Add the alert here
-            return response;;
-        }
-    }*/
 
     return (
         <ThemeProvider theme={defaultTheme}>

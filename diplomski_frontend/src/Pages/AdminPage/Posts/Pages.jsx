@@ -22,23 +22,8 @@ export default function Pages() {
             });
     }, []);
 
-    const containersData = [
-        {
-            title: 'Title for card 1',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...'
-        },
-        {
-            title: 'Title for card 1',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...'
-        },
-        {
-            title: 'Title for card 1',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...'
-        },
-    ];
-
     return (
-        <Box p={4}>
+        <Box>
             <div className="seminar-container__left_admin">
                 {posts.map((post, index) => (
                     <div className="seminar-content">
@@ -47,6 +32,7 @@ export default function Pages() {
                             title={post.title}
                             description={post.description}
                             active={true}
+                            image={post.imageURL}
                         />
                     </div>
                 ))}

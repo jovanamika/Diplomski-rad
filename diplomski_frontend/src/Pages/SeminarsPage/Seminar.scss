@@ -88,3 +88,28 @@
         background: var(--color-light-blue);
         height: 20%;
     }
+
+@media (max-width: 1024px) {
+        .seminar-container {
+            flex-direction: column;
+            padding: 0;
+    
+            &__left,
+            &__right {
+                width: 100%;
+                padding: 0; /* You may adjust padding as needed for mobile view */
+                margin: 0; /* You may adjust margin as needed for mobile view */
+            }
+    
+            &__left{
+                order: 1;
+                margin-top: 40px;
+                gap:50px; /* Change the order to control the stacking order */
+            }
+    
+            &__right {
+                order: 2; /* Change the order to control the stacking order */
+                border: none; /* Remove border for mobile view or customize as needed */
+            }
+        }
+    }

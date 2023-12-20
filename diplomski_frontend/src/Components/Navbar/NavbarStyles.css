@@ -74,8 +74,8 @@ nav {
 	}
 
 	header .responsive_nav {
-		transform: translateY(100vh);
-		background-color: var(--color-grey);
+		transform: translateY(30vh);
+		background-color: var(--footer-bg-color);
 		position:absolute;
 	}
 
@@ -87,5 +87,10 @@ nav {
 
 	nav a {
 		font-size: 1.5rem;
+	}
+
+	.avatar{
+		z-index: -1;
+		margin-left: 5%;
 	}
 }

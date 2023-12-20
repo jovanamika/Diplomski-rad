@@ -45,7 +45,7 @@ export default function AdminLogIn() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Email"
               name="email"
               autoComplete="email"
               autoFocus
@@ -55,7 +55,7 @@ export default function AdminLogIn() {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="Lozinka"
               type="password"
               id="password"
               autoComplete="current-password"
@@ -64,7 +64,7 @@ export default function AdminLogIn() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, bgcolor:'var(--color-light-blue)' }}
+              sx={{ mt: 3, mb: 2, bgcolor:'var(--footer-bg-color)' }}
             >
               Prijavi se
             </Button>

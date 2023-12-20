@@ -3,7 +3,6 @@ import Seminars from './Seminars'
 import './Seminar.scss'
 import { SearchIcon } from '@chakra-ui/icons'
 import { IconButton, Container, InputGroup, Input, Heading } from '@chakra-ui/react'
-import news from '../../Assets/Img/news.jpg'
 import SingleCard from './SingleCard'
 
 export default function Seminar() {
@@ -41,6 +40,7 @@ export default function Seminar() {
               date={seminar.eventDate}
               time={seminar.eventTime}
               teachers={seminar.teachers}
+              users={seminar.users}
               active={true}
             />
           </div>

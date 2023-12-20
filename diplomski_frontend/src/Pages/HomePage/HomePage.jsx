@@ -6,9 +6,10 @@ import SliderContent from './SliderContainer/SliderContent'
 import useAuth from "../../Hooks/useAuth"
 
 export default function HomePage() {
+  console.log("Kk");
   const {auth, setAuth} = useAuth();
-  console.log("Auth",auth);
-  console.log("hoME");
+  //console.log("Auth",auth.data.firstname);
+  console.log("POCETNA");
   return (
     <div className='main-container'>
       <div className="container">

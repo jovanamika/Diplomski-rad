@@ -3,6 +3,14 @@ import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody,
 import { IconButton, Icon } from '@chakra-ui/react';
 import { FaTimes } from 'react-icons/fa';
 import React from 'react'
+import img1 from '../../Assets/Img/image-1.jpg'
+import img2 from '../../Assets/Img/image-2.jpg'
+import img3 from '../../Assets/Img/image-3.jpg'
+import img4 from '../../Assets/Img/image-4.jpg'
+import img5 from '../../Assets/Img/image-5.jpg'
+import img6 from '../../Assets/Img/image-6.jpg'
+import img7 from '../../Assets/Img/image-7.jpg'
+import img8 from '../../Assets/Img/image-8.jpg'
 
 export default function PostCard({ postTitle, postDescription, image }) {
     const [title, setTitle] = React.useState(postTitle);
@@ -18,17 +26,15 @@ export default function PostCard({ postTitle, postDescription, image }) {
     }
 
     const galleryImages = [
-        'https://images.unsplash.com/photo-1600267175161-cfaa711b4a81?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-        'https://images.unsplash.com/photo-1600267175161-cfaa711b4a81?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-        'https://images.unsplash.com/photo-1600267175161-cfaa711b4a81?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-        'https://images.unsplash.com/photo-1600267175161-cfaa711b4a81?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-        'https://images.unsplash.com/photo-1600267175161-cfaa711b4a81?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-        'https://images.unsplash.com/photo-1600267175161-cfaa711b4a81?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-        'https://images.unsplash.com/photo-1600267175161-cfaa711b4a81?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-        'https://images.unsplash.com/photo-1600267175161-cfaa711b4a81?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
-        
+        img1,
+        img2,
+        img3,
+        img4,
+        img5,
+        img6,
+        img7,
+        img8
     ];
-
     const handleImageSelect = (selectedImageUrl) => {
         setSelectedImage(selectedImageUrl);
         console.log(selectedImageUrl);
@@ -87,7 +93,7 @@ export default function PostCard({ postTitle, postDescription, image }) {
                 <FormLabel>Naslov</FormLabel>
                 <Input
                     value={title}
-                    placeholder="Title"
+                    placeholder="Naslov"
                     _placeholder={{ color: 'gray.500' }}
                     type="text"
                     border="1px solid black"
@@ -98,7 +104,7 @@ export default function PostCard({ postTitle, postDescription, image }) {
                 <FormLabel></FormLabel>
                 <Textarea
                     value={description}
-                    placeholder="Content"
+                    placeholder="Sadržaj"
                     _placeholder={{ color: 'gray.500' }}
                     type="text"
                     border="1px solid black"
@@ -160,14 +166,14 @@ export default function PostCard({ postTitle, postDescription, image }) {
                     <Button
                         w="100%"
                         style={{
-                            background: 'red',
                             color: 'white',
                         }}
+                        colorScheme="teal"
                         onMouseEnter={(e) => {
-                            e.currentTarget.style.background = 'darkred';
+                            e.currentTarget.style.background = 'darkteal';
                         }}
                         onMouseLeave={(e) => {
-                            e.currentTarget.style.background = 'red';
+                            e.currentTarget.style.background = 'teal';
                             e.currentTarget.style.color = 'white';
                         }}
                         onClick={toggleModal}

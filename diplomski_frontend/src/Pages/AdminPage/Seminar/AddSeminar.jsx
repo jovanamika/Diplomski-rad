@@ -68,7 +68,7 @@ export default function AddSeminar() {
 
 
     return (
-        <Container justifyContent={'center'} align='center' width={'100%'} pt={'5vh'}>
+        <Container justifyContent={'center'} align='center' width={'100%'} pt={'3vh'}>
             <FormControl id="title" isRequired mb={'2vh'}>
                 <FormLabel>Naslov</FormLabel>
                 <Input

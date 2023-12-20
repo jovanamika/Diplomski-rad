@@ -1,10 +1,10 @@
 import React from 'react'
 import { CardFooter, Text, Button, Card, Divider, Stack, CardBody, HStack, Heading, Container, Center, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter } from '@chakra-ui/react'
 import PostCard from '../../ProfilPage/PostCard';
-import pic from '../../../Assets/Img/news.jpg'
 
-export default function Post({ id, title, description, active, setPosts, posts }) {
-    let isAtAdminPanel = true;
+export default function Post({ id, title, description, active, setPosts, posts, image }) {
+    let isAtAdminPanel = false;
+    console.log("Image: ",image)
     const [modal, setModal] = React.useState(false);
 
     const toggleModal = () => {
@@ -53,7 +53,7 @@ export default function Post({ id, title, description, active, setPosts, posts }
             <Stack justify='center' align='center' width={'90%'}>
                 <CardBody justify='center' align='center' width={'100%'} style={{ position: 'relative' }}>
                     <Container style={{ width: '100%', height: '30vh', display: 'flex', justifyContent: 'center' }}>
-                        <div style={{ backgroundImage: `url(${pic})`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }} />
+                        <div style={{ backgroundImage: `url(${image})`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }} />
                     </Container>
                     <Heading size='md' marginBottom={'2vh'} marginTop={'2vh'}>{title}</Heading>
                     <Text py='2' align='left' marginBottom={'2vh'} paddingLeft={'2vh'}>
@@ -62,7 +62,7 @@ export default function Post({ id, title, description, active, setPosts, posts }
                     <Divider />
                 </CardBody>
 
-                {isAtAdminPanel && (<CardFooter align='center' justify='flex-end' width={'100%'}>
+                {true && (<CardFooter align='center' justify='flex-end' width={'100%'}>
                     <HStack spacing={4}>
                         <Button
                             variant="solid"
@@ -87,7 +87,7 @@ export default function Post({ id, title, description, active, setPosts, posts }
                         <ModalHeader>Uredi objavu</ModalHeader>
                         <ModalCloseButton />
                         <ModalBody>
-                            <PostCard postTitle={title} postDescription={description} image={pic} />
+                            <PostCard postTitle={title} postDescription={description} image={'../../../Assets/Img/'+image} />
                         </ModalBody>
                         <ModalFooter>
 

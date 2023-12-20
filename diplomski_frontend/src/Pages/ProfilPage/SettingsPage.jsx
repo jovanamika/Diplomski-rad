@@ -12,8 +12,10 @@ import {
     background,
 } from '@chakra-ui/react'
 import { SmallCloseIcon } from '@chakra-ui/icons'
+import useAuth from '../../Hooks/useAuth';
 
 export default function SettingsPage() {
+    const { auth, setAuth } = useAuth();
     return (
         <Container
             align={'center'}
@@ -25,7 +27,7 @@ export default function SettingsPage() {
             <FormControl id="userName" isRequired mb={'2vh'}>
                 <FormLabel>Ime</FormLabel>
                 <Input
-                    placeholder="ime"
+                    placeholder={auth.data.firstname}
                     _placeholder={{ color: 'gray.500' }}
                     type="text"
                 />
@@ -33,7 +35,7 @@ export default function SettingsPage() {
             <FormControl id="lastName" isRequired mb={'2vh'}>
                 <FormLabel>Prezime</FormLabel>
                 <Input
-                    placeholder="prezime"
+                    placeholder={auth.data.lastname}
                     _placeholder={{ color: 'gray.500' }}
                     type="text"
                 />
@@ -41,7 +43,7 @@ export default function SettingsPage() {
             <FormControl id="email" isRequired mb={'2vh'}>
                 <FormLabel>Email</FormLabel>
                 <Input
-                    placeholder="email"
+                    placeholder={auth.data.email}
                     _placeholder={{ color: 'gray.500' }}
                     type="email"
                 />
@@ -49,7 +51,7 @@ export default function SettingsPage() {
             <FormControl id="password" isRequired mb={'2vh'}>
                 <FormLabel>Lozinka</FormLabel>
                 <Input
-                    placeholder="lozinka"
+                    placeholder={auth.data.password}
                     _placeholder={{ color: 'gray.500' }}
                     type="password"
                 />

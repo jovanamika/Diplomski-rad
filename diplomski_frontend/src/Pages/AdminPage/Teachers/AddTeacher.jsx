@@ -141,6 +141,12 @@ export default function AddTeacher() {
                                     label="Predavač"
                                     sx={{ ml: '5vh' }}
                                 />
+                                <FormControlLabel
+                                    value="admin"
+                                    control={<Radio />}
+                                    label="Administrator"
+                                    sx={{ ml: '5vh' }}
+                                />
                             </RadioGroup>
                         </Grid>
                         <Box
