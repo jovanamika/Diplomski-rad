@@ -7,18 +7,24 @@ import {
   Icon,
 } from '@chakra-ui/react'
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { useLocation } from "react-router-dom";
 
 export default function Footer() {
 
-  return (
-    <Box
-      bg={'var(--footer-bg-color)'}
-      bottom={0}
-      mt='auto'
-      height={'100px'}
+  const location = useLocation();
+  const isAtAdminPage = location.pathname === '/admin';
 
-    >
-      {/*<Container
+  return (
+    <Box bottom={0}
+      mt='auto'>
+      {!isAtAdminPage && (<Box
+        bg={'var(--footer-bg-color)'}
+        bottom={0}
+        mt='auto'
+        height={'100px'}
+
+      >
+        {/*<Container
         as={Stack}
         maxW={'6xl'}
         py={4}
@@ -42,33 +48,34 @@ export default function Footer() {
         </Stack>
       </Container>*/}
 
-      <Box
-        alignContent={'center'}
-        alignItems='center'     // Vertically center align items
-        display='flex'
-        height={'100%'}>
-        <Container
-          as={Stack}
-          maxW={'6xl'}
-          py={4}
-          direction={{ base: 'column', md: 'row' }}
-          spacing={4}
-          justify={{ base: 'center', md: 'space-between' }}
-          align={{ base: 'center', md: 'center' }}>
-          <Text color={'white'}>© 2023 Copyright Jovana Mika. All rights reserved</Text>
-          <Stack direction={'row'} spacing={6}>
-            <Link href='https://www.facebook.com/pmf.unibl.org/'>
-              <Icon as={FaFacebook} boxSize={6} color="white" mr={3} />
-            </Link>
-            <Link href='https://www.instagram.com/pmfbl/'>
-              <Icon as={FaInstagram} boxSize={6} color="white" mr={3} />
-            </Link>
-            <Link href='https://twitter.com/PMFBL'>
-              <Icon as={FaTwitter} boxSize={6} color="white" mr={3} />
-            </Link>
-          </Stack>
-        </Container>
-      </Box>
+        <Box
+          alignContent={'center'}
+          alignItems='center'     // Vertically center align items
+          display='flex'
+          height={'100%'}>
+          <Container
+            as={Stack}
+            maxW={'6xl'}
+            py={4}
+            direction={{ base: 'column', md: 'row' }}
+            spacing={4}
+            justify={{ base: 'center', md: 'space-between' }}
+            align={{ base: 'center', md: 'center' }}>
+            <Text color={'white'}>© 2023 Copyright Jovana Mika. All rights reserved</Text>
+            <Stack direction={'row'} spacing={6}>
+              <Link href='https://www.facebook.com/pmf.unibl.org/'>
+                <Icon as={FaFacebook} boxSize={6} color="white" mr={3} />
+              </Link>
+              <Link href='https://www.instagram.com/pmfbl/'>
+                <Icon as={FaInstagram} boxSize={6} color="white" mr={3} />
+              </Link>
+              <Link href='https://twitter.com/PMFBL'>
+                <Icon as={FaTwitter} boxSize={6} color="white" mr={3} />
+              </Link>
+            </Stack>
+          </Container>
+        </Box>
+      </Box>)}
     </Box>
   )
 }

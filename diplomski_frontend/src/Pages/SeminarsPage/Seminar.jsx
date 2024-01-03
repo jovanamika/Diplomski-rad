@@ -63,9 +63,9 @@ export default function Seminar() {
           <Heading size='mg' textTransform='uppercase' pb='5vh'>
             Izdvojeno
           </Heading>
-          <SingleCard />
-          <SingleCard />
-          <SingleCard />
+          <SingleCard title="POSJETA TEHNIČKOM UNIVERZITETU U BEČU" />
+          <SingleCard title="OTVOREN KONKURS ZA STIPENDIJA KOMPANIJE M:TEL"/>
+          <SingleCard title="ROUTE2LAUNCH MENTORSKI PROGRAM"/>
         </Container>
       </div>
     </div>

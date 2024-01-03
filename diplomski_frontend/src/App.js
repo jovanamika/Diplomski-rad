@@ -15,15 +15,15 @@ import AdminPanel from './Pages/AdminPage/AdminPanel';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { AuthProvider } from './Contex/AuthProvider';
 
+
 function App() {
   const theme = createTheme();
-  const isAdminLogged = false;
   return (
     <AuthProvider>
-    <ThemeProvider theme={theme}>
-      <ChakraProvider>
-        <div className='App'>
-          <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <ChakraProvider>
+          <div className='App'>
+            <BrowserRouter>
               <CardProvider>
                 <Navbar isLogged={true} />
                 <Routes>
@@ -37,12 +37,11 @@ function App() {
                   <Route path="/admin" element={<AdminPanel />} />
                 </Routes>
               </CardProvider>
-          </BrowserRouter>
-
-          {!isAdminLogged && <Footer />}
-        </div >
-      </ChakraProvider>
-    </ThemeProvider>
+              <Footer />
+            </BrowserRouter>
+          </div >
+        </ChakraProvider>
+      </ThemeProvider>
     </AuthProvider>
   );
 }

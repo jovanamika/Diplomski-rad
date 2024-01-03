@@ -26,13 +26,13 @@ export default function Pages() {
         <Box>
             <div className="seminar-container__left_admin">
                 {posts.map((post, index) => (
-                    <div className="seminar-content">
+                <div className="seminar-content" key={index}>
                         <Post key={index}
                             id={post.id}
                             title={post.title}
                             description={post.description}
                             active={true}
-                            image={post.imageURL}
+                            image={post.imageUrl}
                         />
                     </div>
                 ))}

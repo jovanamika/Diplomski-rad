@@ -62,7 +62,7 @@ export default function AddTeacher() {
 
     return (
         <ThemeProvider theme={defaultTheme}>
-            <Container component="main" alignItems='center' justifyContent='center'>
+            <Container component="main" alignIContent='center' justifyContent='center' >
 
                 <Box
                     sx={{
@@ -70,7 +70,7 @@ export default function AddTeacher() {
                         display: 'flex',
                         flexDirection: 'column',
                         width: '60%',
-                        mr:'50vh'
+                        ml:'190px'
                     }}
                 >
                     <Typography component="h1" variant="h5">

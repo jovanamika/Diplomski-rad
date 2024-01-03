@@ -34,16 +34,18 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import {useLocation } from "react-router-dom";
 
 export default function Seminars({ title, description, date, time, teachers, users, active }) {
   const [isSigned, setIsSigned] = useState(false);
-  const [modal, setModal] = React.useState(true);
+  const [modal, setModal] = React.useState(false);
   const [selectedImage, setSelectedImage] = React.useState(null);
   const [teacherList, setTeachers] = useState([]);
   const [tags, setTags] = useState([]);
   const [selectedName, setSelectedName] = useState('');
   const nameOptions = ["John Doe", "Jane Smith", "Bob Johnson"]; // Add your list of names
-  let isAtAdminPanel = false;
+  const location = useLocation();
+  const isAtAdminPanel = location.pathname === '/admin';
 
   const handleAddTag = () => {
     if (selectedName) {

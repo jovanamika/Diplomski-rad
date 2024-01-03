@@ -20,7 +20,7 @@ export default function Profil() {
   const { auth, setAuth } = useAuth();
   const navigate = useNavigate();
 
-  console.log(auth.data);
+  console.log(auth.data.role);
 
   React.useEffect(() => {
     if (auth.data) {
@@ -59,7 +59,7 @@ export default function Profil() {
   }
 
   const LogOut = () => {
-    console.log('Odjava');
+    setAuth(null);
     navigate("/");
   }
 
@@ -76,12 +76,13 @@ export default function Profil() {
 
           <Divider background={'black'} height={'1px'} />
 
-          <HStack spacing={4} className={`text-component${postCard ? '__activeText' : ''}`}>
+          {auth.data.role.id == 2 && (<HStack spacing={4} className={`text-component${postCard ? '__activeText' : ''}`}>
             <Icon as={TfiWrite} boxSize={5} />
             <Text py='2' marginRight={'8vh'} onClick={GetPostCard} cursor="pointer">Napiši post</Text>
-          </HStack>
+          </HStack>)}
 
-          <Divider background={'black'} height={'1px'} />
+          {auth.data.role.id == 2 && (<Divider background={'black'} height={'1px'} />)}
+
 
           <HStack spacing={4} className={`text-component${settingsCard ? '__activeText' : ''}`}>
             <Icon as={TfiSettings} boxSize={5} />

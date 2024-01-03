@@ -21,32 +21,18 @@ export default function Notification() {
             });
     }, []);
 
-    const containersData = [
-        {
-            title: 'Title for card 1',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...'
-        },
-        {
-            title: 'Title for card 1',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...'
-        },
-        {
-            title: 'Title for card 1',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...'
-        },
-    ];
-
     return (
         <Box mt='0'>
             <div className="seminar-container__left_admin">
                 {posts.map((post, index) => (
-                    <div key={index}>
+                    <div className="seminar-content" key={index}>
                         {!post.active ? (
                             <Post
                                 id={post.id}
                                 title={post.title}
                                 description={post.description}
                                 active={post.active}
+                                image={post.imageUrl}
                             />
                         ) : (
                            <></>

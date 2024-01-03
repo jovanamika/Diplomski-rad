@@ -7,12 +7,14 @@ import { Avatar } from "@chakra-ui/react";
 import { useNavigate, useLocation } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 
-function Navbar({ isLogged }) {
+function Navbar() {
 	const {auth, setAuth} = useAuth();
 	const navRef = useRef();
 	const navigate = useNavigate();
 	const location = useLocation();
 	const isAtAdminPage = location.pathname === '/admin';
+	let isLogged = auth === null;
+	console.log (isLogged);
 
 	const showNavbar = () => {
 		navRef.current.classList.toggle(
@@ -32,7 +34,7 @@ function Navbar({ isLogged }) {
 		<header className="header">
 			<Image
 				marginLeft={'5%'}
-				marginRight={'20%'}
+				marginRight={'15%'}
 				borderRadius='full'
 				boxSize='60px'
 				src={logo}
@@ -54,12 +56,12 @@ function Navbar({ isLogged }) {
 			<button
 				className="nav-btn"
 				onClick={showNavbar}
-				style={{ color: 'white', paddingLeft:'25%', paddingRight:'10px'}}
+				style={{ color: 'white', paddingLeft:'10%', paddingRight:'10px'}}
 				>
 				<FaBars />
 			</button>
 
-			{isLogged && !isAtAdminPage &&
+			{!isLogged && !isAtAdminPage &&
 				( <Avatar className = "avatar" src='https://bit.ly/broken-link' onClick={handleClick} cursor={"pointer"}/>
 				)}
 
