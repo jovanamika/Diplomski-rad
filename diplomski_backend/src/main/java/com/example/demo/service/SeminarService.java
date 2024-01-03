@@ -22,9 +22,24 @@ public class SeminarService {
         return this.seminarRepository.findById(id).get();
     }
     
+    public List<SeminarEntity> getAllByTitle(String title) {
+		return this.seminarRepository.getAllByTitle(title);
+	}
+    
     public void addSeminar(SeminarEntity seminar) {
     	
    	 this.seminarRepository.save(seminar);
 
    }
+    
+    public void updateSeminar(SeminarEntity seminar) {
+ 
+      	 this.seminarRepository.save(seminar);
+
+      }
+    
+	public void deleteSeminarById(int id) {
+		SeminarEntity seminar = this.getSeminarById(id);
+		this.seminarRepository.delete(seminar);
+	}
 }

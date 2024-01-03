@@ -22,32 +22,44 @@ public class UserService {
 	public List<UserEntity> getAllUsers() {
 		return this.userRepository.findAll();
 	}
+	
+	/*public List<UserEntity> getAllTeachers(){
+		return this.userRepository.findAllTeachers();
+	}*/
 
 	public UserEntity getUserById(int id) {
 		return this.userRepository.findById(id).get();
 	}
 
-	public Set<RoleEntity> getRoleByUserId(int id) {
+	/*public Set<RoleEntity> getRoleByUserId(int id) {
 		return this.userRepository.findRolesByUserEntityId(id);
-	}
+	}*/
+	
+	 public UserEntity getLogInUser(String email, String password) {
+	    	return this.userRepository.findByEmailAndPassword(email, password);
+	    }
+	 
+	 public boolean isAvailable(String email) {
+			return this.userRepository.findByEmail(email).size()==0;
+		}
+		
 
-	public void addUser(UserEntity user) {
+	public UserEntity addUser(UserEntity user, int role_id) {
 
-		RoleEntity role = this.roleService.getRoleById(1);
-		user.setRoles(role);
+		RoleEntity role = this.roleService.getRoleById(role_id);
+		user.setRole(role);
 		this.userRepository.save(user);
 		user.setActive(true);
-		user.setRoles(role);
+		user.setRole(role);
 		this.updateUser(user);
-		role.addUser(user);
-		this.roleService.updateRole(role);
+		return user;
 
 	}
 
 	public void deleteUserById(int id) {
 		UserEntity user = this.getUserById(id);
-		user.setActive(false);
-		this.updateUser(user);
+		user.setRole(null);
+		userRepository.delete(user);
 	}
 
 	public void updateUser(UserEntity user) {

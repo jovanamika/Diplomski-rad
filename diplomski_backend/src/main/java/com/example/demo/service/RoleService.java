@@ -32,5 +32,9 @@ public class RoleService {
 	public void updateRole(RoleEntity role) {
 		this.roleRepository.save(role);
 	}
+	
+	/*public void deleteByUserId(int id) {
+		this.roleRepository.deleteByUserId(null);
+	}*/
 
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.entity.RoleEntity;
 import com.example.demo.model.entity.UserEntity;
+import com.example.demo.service.RoleService;
 import com.example.demo.service.UserService;
 
 @RestController
@@ -20,10 +21,14 @@ import com.example.demo.service.UserService;
 public class UserController {
     @Autowired
     private final UserService userService;
+    
+    @Autowired
+    private final RoleService roleService;
 
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, RoleService roleService) {
         this.userService = userService;
+        this.roleService = roleService;
     }
 
     @RequestMapping("/users")
@@ -31,26 +36,43 @@ public class UserController {
         return  this.userService.getAllUsers();
     }
     
+  /*  @RequestMapping("/users/teachers")
+    public List<UserEntity> getAllTeachers(){
+    	return this.userService.getAllTeachers();
+    }*/
+    
     @RequestMapping("/users/{id}")
     public UserEntity getUserById(@PathVariable int id) {
     	return this.userService.getUserById(id);
     }
     
-    @RequestMapping(method = RequestMethod.POST, value = "/users")
-	public void addUser(@RequestBody UserEntity user) {
-    	 System.out.println(user.toString());
-		 this.userService.addUser(user);
+    
+    @RequestMapping("/users/isAvailable/{email}")
+	public boolean isAvailable(@PathVariable String email) {
+		return userService.isAvailable(email);
 	}
     
-	@RequestMapping("/users/{id}/role")
+    @RequestMapping(method = RequestMethod.POST, value = "/users/{role_id}")
+	public UserEntity addUser(@RequestBody UserEntity user, @PathVariable int role_id) {
+		 return this.userService.addUser(user, role_id);
+	}
+    
+	/*@RequestMapping("/users/{id}/role")
 	public Set<RoleEntity> getUserRoleByUserId(@PathVariable int id) {
 		return this.userService.getRoleByUserId(id);
+	}*/
+	
+	@RequestMapping("users/{email}/{password}")
+	public UserEntity getLogInUser(@PathVariable String email, @PathVariable String password) {
+		return this.userService.getLogInUser(email, password);
 	}
 	
     
     @RequestMapping(method = RequestMethod.DELETE, value="/users/{id}")
-    public void deleteUserById(@PathVariable int id) {
+    public void deleteUserById(@PathVariable int id) 
+    {
     	this.userService.deleteUserById(id);
+    	//this.roleService.deleteByUserId(id);
     }
     
     @RequestMapping(method = RequestMethod.PUT, value = "/users")

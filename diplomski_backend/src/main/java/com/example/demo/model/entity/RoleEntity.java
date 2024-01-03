@@ -28,9 +28,6 @@ public class RoleEntity {
 	@Column(name = "name")
 	private String name;
 	
-	 @ManyToMany(mappedBy = "roles")
-	    private Set<UserEntity> users = new HashSet<>();
-	
 
     public RoleEntity() { }
      
@@ -64,7 +61,7 @@ public class RoleEntity {
 		this.name = name;
 	}
 
-	public Set<UserEntity> getUsers() {
+	/*public Set<UserEntity> getUsers() {
 		return users;
 	}
 	
@@ -74,8 +71,7 @@ public class RoleEntity {
 
 	public void setUsers(Set<UserEntity> users) {
 		this.users = users;
-	}
-	
+	*/
 	
 	
 

@@ -9,6 +9,8 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,16 +27,36 @@ public class PostEntity {
 	private String title;
 	
 	@Basic
-	@Column(name = "description")
+	@Lob
+	@Column(columnDefinition = "TEXT")
 	private String description;
-
+	
+	@Basic
+	@Column(name="image_url")
+	private String imageUrl;
+	
+	@Basic
+	@Column(name="datum_objave")
+	private java.sql.Timestamp datumObjave;
+	
+	@Basic
+	@Column (name="active")
+	private boolean active;
+	
+	
+    @ManyToOne
+    private UserEntity user;
+    
 	public PostEntity() {
 	};
 
-	public PostEntity(String title, String description) {
+	public PostEntity(String title, String description, String imageURL, java.sql.Timestamp datumObjave, boolean active) {
 		super();
 		this.title = title;
 		this.description = description;
+		this.imageUrl = imageUrl;
+		this.datumObjave = datumObjave;
+		this.active = active;
 	}
 
 	public int getId() {
@@ -59,6 +81,38 @@ public class PostEntity {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public UserEntity getUser() {
+		return user;
+	}
+	
+	public void setUser(UserEntity user) {
+		this.user = user;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public java.sql.Timestamp getDatumObjave() {
+		return datumObjave;
+	}
+
+	public void setDatumObjave(java.sql.Timestamp datumObjave) {
+		this.datumObjave = datumObjave;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	@Override
